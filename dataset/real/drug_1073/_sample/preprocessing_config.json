@@ -1,0 +1,8 @@
+{
+    "drug_id": 1073,
+    "drug_name": "5-Fluorouracil",
+    "n_latent": 5,
+    "noise_sigma": 9099.0,
+    "n_datasets": 5,
+    "x_unit": "ln(\u00b5M)"
+}

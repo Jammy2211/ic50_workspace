@@ -1,0 +1,12 @@
+{
+    "domain": "cancer",
+    "noise_sigma": 9099.0,
+    "n_latent": 5,
+    "n_doses": 7,
+    "cosmic_id": 684052,
+    "drugset_id": 217,
+    "drug_id": 1073,
+    "drug_name": "5-Fluorouracil",
+    "simulated": false,
+    "x_unit": "ln(\u00b5M)"
+}

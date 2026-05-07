@@ -1,0 +1,792 @@
+symbol,method_of_action,cosmic_moa,intogen_moa,huang_et_al_moa,gene_id,dataset_name
+ABCB1,Act,,Act,,SIDG00064,Driver genes
+ABI1,ambiguous,"TSG, fusion",ambiguous,,SIDG00145,Driver genes
+ABL1,Act,"oncogene, fusion",Act,,SIDG00150,Driver genes
+ABL2,Act,"oncogene, fusion",Act,,SIDG00151,Driver genes
+ACKR3,Act,"oncogene, fusion",Act,,SIDG00205,Driver genes
+ACSL3,Act,fusion,Act,,SIDG00244,Driver genes
+ACVR1,ambiguous,oncogene,ambiguous,,SIDG00344,Driver genes
+ACVR2A,LoF,TSG,LoF,,SIDG00347,Driver genes
+AFDN,Act,"oncogene, fusion",,,SIDG00567,Driver genes
+AFF1,Act,fusion,Act,,SIDG00569,Driver genes
+AFF3,ambiguous,"oncogene, fusion",ambiguous,,SIDG00573,Driver genes
+AFF4,Act,"oncogene, fusion",,,SIDG00574,Driver genes
+AJUBA,LoF,,LoF,,SIDG00701,Driver genes
+AKT1,Act,oncogene,Act,,SIDG00784,Driver genes
+AKT2,Act,oncogene,,,SIDG00786,Driver genes
+AKT3,ambiguous,,ambiguous,,SIDG00787,Driver genes
+ALB,Act,,Act,,SIDG00793,Driver genes
+ALK,Act,"oncogene, fusion",Act,,SIDG00858,Driver genes
+AMER1,LoF,TSG,LoF,,SIDG00920,Driver genes
+APC,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG01214,"Driver genes, CPV genes"
+APOBEC3B,ambiguous,"oncogene, TSG",,,SIDG01247,Driver genes
+AR,Act,oncogene,Act,NaN,SIDG01312,"Driver genes, CPV genes"
+ARAF,Act,,Act,,SIDG01313,Driver genes
+ARHGAP26,LoF,"TSG, fusion",,,SIDG01382,Driver genes
+ARHGAP35,LoF,,LoF,,SIDG01396,Driver genes
+ARHGAP5,LoF,,LoF,,SIDG01359,Driver genes
+ARHGEF10,ambiguous,,ambiguous,,SIDG01424,Driver genes
+ARHGEF10L,LoF,,LoF,,SIDG01425,Driver genes
+ARHGEF12,ambiguous,"TSG, fusion",Act,,SIDG01427,Driver genes
+ARID1A,LoF,"TSG, fusion",LoF,,SIDG01446,Driver genes
+ARID1B,LoF,TSG,LoF,,SIDG01447,Driver genes
+ARID2,LoF,TSG,LoF,,SIDG01448,Driver genes
+ARNT,ambiguous,"oncogene, TSG, fusion",,,SIDG01543,Driver genes
+ASPSCR1,fusion,fusion,,,SIDG01681,Driver genes
+ASXL1,LoF,TSG,LoF,,SIDG01704,Driver genes
+ASXL2,LoF,,LoF,,SIDG01705,Driver genes
+ATF1,Act,"oncogene, fusion",,,SIDG01720,Driver genes
+ATF7IP,LoF,,LoF,,SIDG01733,Driver genes
+ATG7,LoF,,LoF,,SIDG01745,Driver genes
+ATIC,fusion,fusion,,,SIDG01760,Driver genes
+ATM,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG01764,"Driver genes, CPV genes"
+ATP1A1,ambiguous,"oncogene, TSG",,,SIDG01771,Driver genes
+ATP2B3,LoF,TSG,,,SIDG01792,Driver genes
+ATR,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG01954,"Driver genes, CPV genes"
+ATRX,LoF,TSG,LoF,,SIDG01959,Driver genes
+AXIN1,LoF,TSG,LoF,,SIDG02003,Driver genes
+AXIN2,LoF,TSG,LoF,Not classified,SIDG02004,"Driver genes, CPV genes"
+B2M,LoF,TSG,LoF,,SIDG02017,Driver genes
+BAP1,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG02114,"Driver genes, CPV genes"
+BARD1,LoF,TSG,NaN,NaN,SIDG02115,"Driver genes, CPV genes"
+BAX,LoF,TSG,,,SIDG02127,Driver genes
+BCL10,ambiguous,"TSG, fusion",ambiguous,,SIDG02200,Driver genes
+BCL11A,Act,"oncogene, fusion",Act,,SIDG02201,Driver genes
+BCL11B,ambiguous,"oncogene, TSG, fusion",Act,,SIDG02202,Driver genes
+BCL2,Act,"oncogene, fusion",Act,,SIDG02177,Driver genes
+BCL2L12,ambiguous,,ambiguous,,SIDG02184,Driver genes
+BCL3,Act,"oncogene, fusion",,,SIDG02189,Driver genes
+BCL6,Act,"oncogene, fusion",Act,,SIDG02191,Driver genes
+BCL7A,Act,fusion,Act,,SIDG02194,Driver genes
+BCL9,Act,"oncogene, fusion",Act,,SIDG02197,Driver genes
+BCL9L,ambiguous,"oncogene, TSG",Act,,SIDG02198,Driver genes
+BCLAF1,Act,,Act,,SIDG02203,Driver genes
+BCOR,LoF,"TSG, fusion",LoF,,SIDG02209,Driver genes
+BCORL1,ambiguous,"oncogene, TSG",LoF,,SIDG02210,Driver genes
+BCR,Act,fusion,Act,,SIDG02212,Driver genes
+BIRC3,ambiguous,"oncogene, TSG, fusion",Act,,SIDG02303,Driver genes
+BIRC6,ambiguous,,ambiguous,,SIDG02305,Driver genes
+BLM,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG02318,"Driver genes, CPV genes"
+BMPR1A,ambiguous,"oncogene, TSG",LoF,Tumor Suppressor Gene,SIDG02359,"Driver genes, CPV genes"
+BMPR2,LoF,,LoF,,SIDG02364,Driver genes
+BRAF,Act,"oncogene, fusion",Act,,SIDG02491,Driver genes
+BRCA1,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG02496,"Driver genes, CPV genes"
+BRCA2,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG02498,"Driver genes, CPV genes"
+BRD3,Act,"oncogene, fusion",,,SIDG02504,Driver genes
+BRD4,Act,"oncogene, fusion",Act,,SIDG02506,Driver genes
+BRD7,LoF,,LoF,,SIDG02507,Driver genes
+BRIP1,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG02533,"Driver genes, CPV genes"
+BTG1,ambiguous,"TSG, fusion",ambiguous,,SIDG02614,Driver genes
+BTK,ambiguous,"oncogene, TSG",Act,,SIDG02622,Driver genes
+BUB1B,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG02641,"Driver genes, CPV genes"
+CACNA1D,ambiguous,oncogene,ambiguous,,SIDG03307,Driver genes
+CALR,Act,oncogene,,,SIDG03383,Driver genes
+CAMTA1,LoF,"TSG, fusion",LoF,,SIDG03407,Driver genes
+CANT1,fusion,fusion,,,SIDG03414,Driver genes
+CARD11,Act,oncogene,Act,,SIDG03455,Driver genes
+CARS1,ambiguous,"TSG, fusion",ambiguous,,SIDG03471,Driver genes
+CASP8,LoF,TSG,LoF,,SIDG03513,Driver genes
+CASZ1,LoF,,LoF,,SIDG03528,Driver genes
+CBFA2T3,ambiguous,"TSG, fusion",Act,,SIDG03555,Driver genes
+CBFB,ambiguous,"TSG, fusion",Act,,SIDG03556,Driver genes
+CBL,ambiguous,"oncogene, TSG, fusion",Act,Oncogene,SIDG03557,"Driver genes, CPV genes"
+CBLB,LoF,TSG,,,SIDG03558,Driver genes
+CBLC,ambiguous,"oncogene, TSG",,,SIDG03559,Driver genes
+CCDC6,LoF,"TSG, fusion",LoF,,SIDG03616,Driver genes
+CCNB1IP1,LoF,"TSG, fusion",,,SIDG03829,Driver genes
+CCND1,Act,"oncogene, fusion",Act,,SIDG03838,Driver genes
+CCND2,Act,"oncogene, fusion",Act,,SIDG03839,Driver genes
+CCND3,Act,"oncogene, fusion",Act,,SIDG03842,Driver genes
+CCNE1,Act,oncogene,,,SIDG03846,Driver genes
+CCR7,LoF,,LoF,,SIDG03886,Driver genes
+CD274,LoF,"TSG, fusion",,,SIDG04016,Driver genes
+CD58,LoF,,LoF,,SIDG03973,Driver genes
+CD74,Act,"oncogene, fusion",,,SIDG03980,Driver genes
+CD79A,Act,oncogene,,,SIDG03981,Driver genes
+CD79B,Act,oncogene,Act,,SIDG03982,Driver genes
+CDC73,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG04087,"Driver genes, CPV genes"
+CDH1,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG04102,"Driver genes, CPV genes"
+CDH10,Act,,Act,,SIDG04111,Driver genes
+CDH11,ambiguous,"TSG, fusion",ambiguous,,SIDG04112,Driver genes
+CDK12,LoF,TSG,LoF,,SIDG04166,Driver genes
+CDK4,Act,oncogene,Act,,SIDG04147,Driver genes
+CDK6,Act,"oncogene, fusion",,,SIDG04156,Driver genes
+CDKN1A,LoF,,LoF,,SIDG04181,Driver genes
+CDKN1B,LoF,TSG,LoF,Not classified,SIDG04183,"Driver genes, CPV genes"
+CDKN2A,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG04185,"Driver genes, CPV genes"
+CDKN2C,LoF,TSG,LoF,,SIDG04194,Driver genes
+CDX2,ambiguous,"TSG, fusion",Act,,SIDG04229,Driver genes
+CEBPA,ambiguous,TSG,ambiguous,Oncogene,SIDG04285,"Driver genes, CPV genes"
+CEP43,fusion,fusion,,,SIDG09087,Driver genes
+CHCHD7,fusion,fusion,,,SIDG04540,Driver genes
+CHD2,LoF,,LoF,,SIDG04544,Driver genes
+CHD4,Act,oncogene,Act,,SIDG04546,Driver genes
+CHEK2,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG04554,"Driver genes, CPV genes"
+CIC,ambiguous,"oncogene, TSG, fusion",LoF,,SIDG04675,Driver genes
+CIITA,ambiguous,"TSG, fusion",Act,,SIDG04708,Driver genes
+CLIP1,LoF,fusion,LoF,,SIDG04858,Driver genes
+CLTC,ambiguous,"TSG, fusion",Act,,SIDG04905,Driver genes
+CLTCL1,ambiguous,"TSG, fusion",Act,,SIDG04907,Driver genes
+CMTR2,LoF,,LoF,,SIDG04962,Driver genes
+CNBP,LoF,"TSG, fusion",,,SIDG04969,Driver genes
+CNOT3,ambiguous,TSG,Act,,SIDG05011,Driver genes
+CNTRL,fusion,fusion,,,SIDG05065,Driver genes
+COL1A1,Act,fusion,Act,,SIDG05089,Driver genes
+COL2A1,fusion,fusion,,,SIDG05093,Driver genes
+CPEB3,Act,,Act,,SIDG05319,Driver genes
+CR1,ambiguous,,ambiguous,,SIDG05369,Driver genes
+CREB1,Act,"oncogene, fusion",,,SIDG05386,Driver genes
+CREB3L1,LoF,"TSG, fusion",,,SIDG05388,Driver genes
+CREB3L2,Act,"oncogene, fusion",,,SIDG05389,Driver genes
+CREBBP,ambiguous,"oncogene, TSG, fusion",LoF,,SIDG05393,Driver genes
+CRLF2,Act,"oncogene, fusion",,,SIDG05424,Driver genes
+CRNKL1,Act,,Act,,SIDG05429,Driver genes
+CRTC1,ambiguous,"oncogene, fusion",ambiguous,,SIDG05445,Driver genes
+CRTC3,fusion,fusion,,,SIDG05447,Driver genes
+CSF3R,Act,oncogene,Act,,SIDG05503,Driver genes
+CTCF,LoF,TSG,LoF,,SIDG05645,Driver genes
+CTNNB1,Act,"oncogene, fusion",Act,,SIDG05669,Driver genes
+CUL3,LoF,,LoF,,SIDG05725,Driver genes
+CUX1,ambiguous,"oncogene, TSG",ambiguous,,SIDG05735,Driver genes
+CXCR4,Act,oncogene,Act,,SIDG05773,Driver genes
+CYLD,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG05873,"Driver genes, CPV genes"
+CYP2C8,LoF,,LoF,,SIDG05892,Driver genes
+CYSLTR2,Act,,Act,,SIDG06001,Driver genes
+DAXX,ambiguous,"oncogene, TSG",LoF,,SIDG06056,Driver genes
+DAZAP1,LoF,,LoF,,SIDG06061,Driver genes
+DCAF12L2,Act,,Act,,SIDG06104,Driver genes
+DCC,LoF,,LoF,,SIDG06116,Driver genes
+DCSTAMP,Act,,Act,,SIDG06142,Driver genes
+DCTN1,fusion,fusion,,,SIDG06145,Driver genes
+DDB2,ambiguous,"oncogene, TSG",LoF,Tumor Suppressor Gene,SIDG06166,"Driver genes, CPV genes"
+DDIT3,Act,"oncogene, fusion",,,SIDG06174,Driver genes
+DDR2,Act,oncogene,,,SIDG06184,Driver genes
+DDX10,LoF,"TSG, fusion",,,SIDG06202,Driver genes
+DDX3X,LoF,TSG,LoF,,SIDG06194,Driver genes
+DDX5,Act,"oncogene, fusion",,,SIDG06197,Driver genes
+DDX6,ambiguous,"oncogene, fusion",ambiguous,,SIDG06198,Driver genes
+DEK,Act,"oncogene, fusion",,,SIDG06359,Driver genes
+DGCR8,LoF,,LoF,,SIDG06490,Driver genes
+DHX9,Act,,Act,,SIDG06541,Driver genes
+DICER1,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG06566,"Driver genes, CPV genes"
+DIS3,LoF,,LoF,,SIDG06591,Driver genes
+DNAJB1,LoF,fusion,LoF,,SIDG06724,Driver genes
+DNM2,LoF,TSG,,,SIDG06841,Driver genes
+DNMT3A,LoF,TSG,LoF,,SIDG06848,Driver genes
+DOT1L,LoF,,LoF,,SIDG06888,Driver genes
+DROSHA,LoF,TSG,LoF,Not classified,SIDG06992,"Driver genes, CPV genes"
+DTX1,ambiguous,,ambiguous,,SIDG07036,Driver genes
+DUSP16,LoF,,LoF,,SIDG07078,Driver genes
+EBF1,ambiguous,"TSG, fusion",ambiguous,,SIDG07252,Driver genes
+EFTUD2,ambiguous,,ambiguous,,SIDG07446,Driver genes
+EGFR,Act,oncogene,Act,,SIDG07457,Driver genes
+EGR2,ambiguous,,ambiguous,,SIDG07468,Driver genes
+EHD2,ambiguous,,ambiguous,,SIDG07474,Driver genes
+EIF1AX,LoF,,LoF,,SIDG07496,Driver genes
+EIF3E,ambiguous,"TSG, fusion",Act,,SIDG07541,Driver genes
+EIF4A2,fusion,fusion,,,SIDG07580,Driver genes
+ELF3,LoF,,LoF,,SIDG07653,Driver genes
+ELF4,ambiguous,"oncogene, TSG, fusion",Act,,SIDG07655,Driver genes
+ELK4,Act,"oncogene, fusion",,,SIDG07665,Driver genes
+ELL,ambiguous,"TSG, fusion",ambiguous,,SIDG07666,Driver genes
+ELN,ambiguous,,ambiguous,,SIDG07682,Driver genes
+EML4,ambiguous,fusion,ambiguous,,SIDG07772,Driver genes
+ENPEP,ambiguous,,ambiguous,,SIDG07813,Driver genes
+EP300,LoF,"TSG, fusion",LoF,,SIDG07855,Driver genes
+EPAS1,ambiguous,"oncogene, TSG",Act,,SIDG07859,Driver genes
+EPHA2,LoF,,LoF,,SIDG07878,Driver genes
+EPHA3,ambiguous,,ambiguous,,SIDG07879,Driver genes
+EPHA7,ambiguous,,ambiguous,,SIDG07884,Driver genes
+EPS15,ambiguous,"TSG, fusion",Act,,SIDG07916,Driver genes
+ERBB2,Act,"oncogene, fusion",Act,,SIDG07927,Driver genes
+ERBB3,Act,oncogene,Act,,SIDG07928,Driver genes
+ERBB4,ambiguous,"oncogene, TSG",LoF,,SIDG07929,Driver genes
+ERC1,fusion,fusion,,,SIDG07931,Driver genes
+ERCC1,LoF,NaN,NaN,Tumor Suppressor Gene,SIDG07934,CPV genes
+ERCC2,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG07935,"Driver genes, CPV genes"
+ERCC3,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG07936,"Driver genes, CPV genes"
+ERCC4,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG07937,"Driver genes, CPV genes"
+ERCC5,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG07938,"Driver genes, CPV genes"
+ERG,Act,"oncogene, fusion",Act,,SIDG07949,Driver genes
+ESR1,ambiguous,"oncogene, TSG, fusion",Act,,SIDG08129,Driver genes
+ESRRA,Act,,Act,,SIDG08134,Driver genes
+ETNK1,LoF,TSG,,,SIDG08160,Driver genes
+ETV1,Act,"oncogene, fusion",,,SIDG08165,Driver genes
+ETV4,ambiguous,"oncogene, fusion",LoF,,SIDG08169,Driver genes
+ETV5,Act,"oncogene, fusion",Act,,SIDG08170,Driver genes
+ETV6,ambiguous,"TSG, fusion",Act,Oncogene,SIDG08172,"Driver genes, CPV genes"
+EWSR1,Act,"oncogene, fusion",Act,,SIDG08191,Driver genes
+EXT1,LoF,"TSG, fusion",NaN,Tumor Suppressor Gene,SIDG08228,"Driver genes, CPV genes"
+EXT2,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG08229,"Driver genes, CPV genes"
+EZH2,ambiguous,"oncogene, TSG",LoF,,SIDG08244,Driver genes
+EZR,fusion,fusion,,,SIDG08246,Driver genes
+FAM135B,Act,,Act,,SIDG08581,Driver genes
+FAM174B,ambiguous,,ambiguous,,SIDG08637,Driver genes
+FAM186A,ambiguous,,ambiguous,,SIDG08657,Driver genes
+FANCA,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG08782,"Driver genes, CPV genes"
+FANCC,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG08784,"Driver genes, CPV genes"
+FANCD2,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG08785,"Driver genes, CPV genes"
+FANCE,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG08789,"Driver genes, CPV genes"
+FANCF,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG08790,"Driver genes, CPV genes"
+FANCG,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG08791,"Driver genes, CPV genes"
+FANCI,LoF,NaN,NaN,Tumor Suppressor Gene,SIDG08792,CPV genes
+FANCL,LoF,NaN,NaN,Tumor Suppressor Gene,SIDG08793,CPV genes
+FANCM,LoF,NaN,NaN,Tumor Suppressor Gene,SIDG08794,CPV genes
+FAS,LoF,TSG,LoF,,SIDG08815,Driver genes
+FAT1,LoF,TSG,LoF,,SIDG08824,Driver genes
+FAT2,Act,,Act,,SIDG08826,Driver genes
+FAT3,ambiguous,,ambiguous,,SIDG08827,Driver genes
+FAT4,LoF,TSG,LoF,,SIDG08828,Driver genes
+FBLN1,Act,,Act,,SIDG08842,Driver genes
+FBN2,ambiguous,,ambiguous,,SIDG08847,Driver genes
+FBXO11,LoF,TSG,LoF,,SIDG08883,Driver genes
+FBXW7,LoF,TSG,LoF,,SIDG08918,Driver genes
+FCGR2B,Act,"oncogene, fusion",,,SIDG08948,Driver genes
+FCRL4,Act,"oncogene, fusion",,,SIDG08969,Driver genes
+FES,ambiguous,"oncogene, TSG",,,SIDG09023,Driver genes
+FEV,Act,"oncogene, fusion",,,SIDG09025,Driver genes
+FGD5,Act,,Act,,SIDG09041,Driver genes
+FGFR1,Act,"oncogene, fusion",Act,,SIDG09086,Driver genes
+FGFR2,Act,"oncogene, fusion",Act,,SIDG09090,Driver genes
+FGFR3,Act,"oncogene, fusion",Act,,SIDG09091,Driver genes
+FGFR4,Act,oncogene,Act,,SIDG09098,Driver genes
+FH,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG09108,"Driver genes, CPV genes"
+FHIT,ambiguous,"TSG, fusion",ambiguous,,SIDG09111,Driver genes
+FIP1L1,fusion,fusion,,,SIDG09135,Driver genes
+FLCN,LoF,TSG,LoF,Not classified,SIDG09173,"Driver genes, CPV genes"
+FLI1,Act,"oncogene, fusion",,,SIDG09177,Driver genes
+FLT3,Act,oncogene,Act,,SIDG09192,Driver genes
+FLT4,ambiguous,oncogene,ambiguous,,SIDG09194,Driver genes
+FN1,LoF,,LoF,,SIDG09225,Driver genes
+FOXA1,ambiguous,oncogene,LoF,,SIDG09271,Driver genes
+FOXA2,LoF,,LoF,,SIDG09272,Driver genes
+FOXD4L1,LoF,,LoF,,SIDG09287,Driver genes
+FOXL2,ambiguous,"oncogene, TSG",Act,,SIDG09308,Driver genes
+FOXO1,ambiguous,"oncogene, TSG, fusion",Act,,SIDG09318,Driver genes
+FOXO3,ambiguous,"oncogene, TSG, fusion",ambiguous,,SIDG09320,Driver genes
+FOXO4,ambiguous,"oncogene, TSG, fusion",,,SIDG09322,Driver genes
+FOXP1,Act,"oncogene, fusion",Act,,SIDG09324,Driver genes
+FSTL3,Act,"oncogene, fusion",,,SIDG09542,Driver genes
+FUBP1,ambiguous,oncogene,LoF,,SIDG09604,Driver genes
+FUS,LoF,"TSG, fusion",,,SIDG09618,Driver genes
+GAS7,fusion,fusion,,,SIDG09884,Driver genes
+GATA1,ambiguous,"oncogene, TSG",Act,,SIDG09889,Driver genes
+GATA2,Act,oncogene,Act,,SIDG09890,Driver genes
+GATA3,ambiguous,"oncogene, TSG",LoF,,SIDG09892,Driver genes
+GLI1,Act,,Act,,SIDG10175,Driver genes
+GMPS,LoF,,LoF,,SIDG10272,Driver genes
+GNA11,Act,oncogene,Act,,SIDG10274,Driver genes
+GNA13,LoF,,LoF,,SIDG10276,Driver genes
+GNAI2,ambiguous,,ambiguous,,SIDG10281,Driver genes
+GNAQ,Act,oncogene,Act,,SIDG10287,Driver genes
+GNAS,Act,oncogene,Act,,SIDG10289,Driver genes
+GOLGA5,fusion,fusion,,,SIDG10361,Driver genes
+GOPC,fusion,fusion,,,SIDG10415,Driver genes
+GPC3,ambiguous,"oncogene, TSG",NaN,Not classified,SIDG10460,"Driver genes, CPV genes"
+GPHN,fusion,fusion,,,SIDG10478,Driver genes
+GRIN2A,ambiguous,TSG,Act,,SIDG10664,Driver genes
+GTF2I,Act,,Act,,SIDG10793,Driver genes
+H3-3A,Act,oncogene,Act,,SIDG10944,Driver genes
+H3-3B,Act,oncogene,,,SIDG10951,Driver genes
+H3C2,Act,oncogene,Act,,SIDG11335,Driver genes
+H4C9,Act,fusion,Act,,SIDG11353,Driver genes
+HERC2,ambiguous,,ambiguous,,SIDG11180,Driver genes
+HERPUD1,fusion,fusion,,,SIDG11196,Driver genes
+HEY1,Act,"oncogene, fusion",,,SIDG11213,Driver genes
+HGF,Act,,Act,,SIDG11219,Driver genes
+HIF1A,Act,oncogene,,,SIDG11241,Driver genes
+HIP1,Act,"oncogene, fusion",Act,,SIDG11280,Driver genes
+HLA-A,ambiguous,fusion,ambiguous,,SIDG11393,Driver genes
+HLA-B,ambiguous,,ambiguous,,SIDG11394,Driver genes
+HLF,Act,"oncogene, fusion",,,SIDG11441,Driver genes
+HMGA1,Act,"oncogene, fusion",,,SIDG11462,Driver genes
+HMGA2,Act,"oncogene, fusion",,,SIDG11471,Driver genes
+HNF1A,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG11670,"Driver genes, CPV genes"
+HNRNPA2B1,Act,"oncogene, fusion",Act,,SIDG11758,Driver genes
+HOOK3,fusion,fusion,,,SIDG11843,Driver genes
+HOXA11,ambiguous,"oncogene, TSG, fusion",ambiguous,,SIDG11864,Driver genes
+HOXA13,Act,"oncogene, fusion",,,SIDG11866,Driver genes
+HOXA9,ambiguous,"oncogene, TSG, fusion",,,SIDG11861,Driver genes
+HOXC11,Act,"oncogene, fusion",,,SIDG11892,Driver genes
+HOXC13,Act,"oncogene, fusion",Act,,SIDG11894,Driver genes
+HOXD11,Act,"oncogene, fusion",,,SIDG11904,Driver genes
+HOXD13,ambiguous,"oncogene, fusion",LoF,,SIDG11906,Driver genes
+HRAS,Act,oncogene,Act,,SIDG11947,Driver genes
+HSP90AA1,Act,fusion,Act,,SIDG12029,Driver genes
+HSP90AB1,Act,fusion,Act,,SIDG12035,Driver genes
+HSPG2,ambiguous,,ambiguous,,SIDG12151,Driver genes
+HTRA2,LoF,,LoF,,SIDG12191,Driver genes
+ID3,LoF,,LoF,,SIDG12269,Driver genes
+IDH1,Act,oncogene,Act,,SIDG12285,Driver genes
+IDH2,Act,oncogene,Act,,SIDG12287,Driver genes
+IFNAR1,LoF,,LoF,,SIDG12352,Driver genes
+IFNGR1,LoF,,LoF,,SIDG12360,Driver genes
+IGH,fusion,fusion,,,SIDG12439,Driver genes
+IGK,fusion,fusion,,,SIDG12678,Driver genes
+IGL,fusion,fusion,,,SIDG12798,Driver genes
+IKBKB,ambiguous,oncogene,ambiguous,,SIDG12924,Driver genes
+IKZF1,ambiguous,"TSG, fusion",ambiguous,,SIDG12928,Driver genes
+IKZF3,ambiguous,,ambiguous,,SIDG12930,Driver genes
+IL2,fusion,fusion,,,SIDG12944,Driver genes
+IL21R,fusion,fusion,,,SIDG13010,Driver genes
+IL6ST,Act,oncogene,Act,,SIDG12959,Driver genes
+IL7R,Act,oncogene,Act,,SIDG12962,Driver genes
+ING1,LoF,,LoF,,SIDG13083,Driver genes
+INO80,ambiguous,,ambiguous,,SIDG13098,Driver genes
+IRAK1,LoF,,LoF,,SIDG13216,Driver genes
+IRF1,LoF,,LoF,,SIDG13222,Driver genes
+IRF4,ambiguous,"oncogene, TSG, fusion",ambiguous,,SIDG13228,Driver genes
+IRS4,ambiguous,"oncogene, TSG",LoF,,SIDG13241,Driver genes
+ITK,fusion,fusion,,,SIDG13332,Driver genes
+JAK1,ambiguous,"oncogene, TSG",ambiguous,,SIDG13374,Driver genes
+JAK2,ambiguous,"oncogene, fusion",ambiguous,,SIDG13375,Driver genes
+JAK3,Act,oncogene,Act,,SIDG13376,Driver genes
+JUN,Act,oncogene,,,SIDG13419,Driver genes
+KAT6A,ambiguous,"oncogene, fusion",ambiguous,,SIDG13444,Driver genes
+KAT6B,ambiguous,"TSG, fusion",Act,,SIDG13445,Driver genes
+KCNJ5,Act,oncogene,,,SIDG13529,Driver genes
+KDM3B,ambiguous,,ambiguous,,SIDG13634,Driver genes
+KDM5A,Act,"oncogene, fusion",Act,,SIDG13642,Driver genes
+KDM5C,LoF,TSG,LoF,,SIDG13644,Driver genes
+KDM6A,ambiguous,"oncogene, TSG",LoF,,SIDG13648,Driver genes
+KDR,Act,oncogene,Act,,SIDG13653,Driver genes
+KDSR,fusion,fusion,,,SIDG13654,Driver genes
+KEAP1,ambiguous,TSG,Act,,SIDG13655,Driver genes
+KEL,Act,,Act,,SIDG13656,Driver genes
+KIF5B,Act,fusion,Act,,SIDG13735,Driver genes
+KIFC1,Act,,Act,,SIDG13768,Driver genes
+KIT,Act,oncogene,Act,,SIDG13799,Driver genes
+KLF4,ambiguous,"oncogene, TSG",Act,,SIDG13819,Driver genes
+KLF5,ambiguous,,ambiguous,,SIDG13821,Driver genes
+KLF6,LoF,TSG,,,SIDG13822,Driver genes
+KLHL36,ambiguous,,ambiguous,,SIDG13886,Driver genes
+KLHL6,LoF,,LoF,,SIDG13856,Driver genes
+KLK2,fusion,fusion,,,SIDG13892,Driver genes
+KMT2A,ambiguous,"oncogene, fusion",LoF,,SIDG13924,Driver genes
+KMT2B,LoF,,LoF,,SIDG13925,Driver genes
+KMT2C,LoF,TSG,LoF,,SIDG13926,Driver genes
+KMT2D,ambiguous,"oncogene, TSG",LoF,,SIDG13927,Driver genes
+KNL1,LoF,"TSG, fusion",,,SIDG13936,Driver genes
+KRAS,Act,oncogene,Act,,SIDG13960,Driver genes
+KTN1,fusion,fusion,,,SIDG14310,Driver genes
+LASP1,fusion,fusion,,,SIDG14414,Driver genes
+LATS1,LoF,TSG,LoF,,SIDG14417,Driver genes
+LATS2,LoF,TSG,LoF,,SIDG14418,Driver genes
+LCK,Act,"oncogene, fusion",,,SIDG14457,Driver genes
+LDB1,Act,,Act,,SIDG14482,Driver genes
+LEF1,ambiguous,"oncogene, TSG",,,SIDG14514,Driver genes
+LIFR,Act,fusion,Act,,SIDG14602,Driver genes
+LMNA,fusion,fusion,,,SIDG16660,Driver genes
+LMO1,Act,"oncogene, fusion",,,SIDG16667,Driver genes
+LMO2,Act,"oncogene, fusion",,,SIDG16668,Driver genes
+LOX,LoF,,LoF,,SIDG16705,Driver genes
+LPAR4,LoF,,LoF,,SIDG16718,Driver genes
+LPP,Act,"oncogene, fusion",Act,,SIDG16733,Driver genes
+LRIG3,ambiguous,"TSG, fusion",ambiguous,,SIDG16756,Driver genes
+LRP1B,LoF,TSG,LoF,,SIDG16764,Driver genes
+LTB,Act,,Act,,SIDG16936,Driver genes
+LY75-CD302,Act,,Act,,SIDG16983,Driver genes
+LYL1,Act,"oncogene, fusion",,,SIDG16991,Driver genes
+LZTR1,LoF,TSG,LoF,,SIDG17035,Driver genes
+MAF,ambiguous,"oncogene, fusion",LoF,,SIDG17068,Driver genes
+MAFB,Act,"oncogene, fusion",,,SIDG17072,Driver genes
+MALT1,ambiguous,"oncogene, fusion",LoF,,SIDG17149,Driver genes
+MAML2,ambiguous,"oncogene, fusion",LoF,,SIDG17154,Driver genes
+MAP2,ambiguous,,ambiguous,,SIDG17190,Driver genes
+MAP2K1,Act,oncogene,Act,,SIDG17191,Driver genes
+MAP2K2,Act,oncogene,,,SIDG17193,Driver genes
+MAP2K4,ambiguous,"oncogene, TSG",LoF,,SIDG17195,Driver genes
+MAP2K7,LoF,,LoF,,SIDG17199,Driver genes
+MAP3K1,ambiguous,"oncogene, TSG",LoF,,SIDG17200,Driver genes
+MAP3K13,ambiguous,"oncogene, TSG",,,SIDG17213,Driver genes
+MAPK1,Act,oncogene,Act,,SIDG17235,Driver genes
+MARK2,ambiguous,,ambiguous,,SIDG17298,Driver genes
+MAX,ambiguous,TSG,Act,Tumor Suppressor Gene,SIDG17350,"Driver genes, CPV genes"
+MB21D2,LoF,,LoF,,SIDG17353,Driver genes
+MCM3AP,ambiguous,,ambiguous,,SIDG17421,Driver genes
+MDM2,Act,oncogene,Act,,SIDG17467,Driver genes
+MDM4,Act,oncogene,Act,,SIDG17468,Driver genes
+MECOM,Act,"oncogene, fusion",Act,,SIDG17480,Driver genes
+MED12,ambiguous,TSG,Act,,SIDG17493,Driver genes
+MEF2B,LoF,,LoF,,SIDG17537,Driver genes
+MEN1,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG17577,"Driver genes, CPV genes"
+MET,Act,oncogene,Act,Oncogene,SIDG17604,"Driver genes, CPV genes"
+MGA,LoF,,LoF,,SIDG17682,Driver genes
+MITF,Act,oncogene,,,SIDG19770,Driver genes
+MLF1,LoF,"TSG, fusion",,,SIDG19801,Driver genes
+MLH1,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG19803,"Driver genes, CPV genes"
+MLLT1,Act,fusion,Act,,SIDG19809,Driver genes
+MLLT10,Act,"oncogene, fusion",,,SIDG19812,Driver genes
+MLLT11,fusion,fusion,,,SIDG19815,Driver genes
+MLLT3,Act,fusion,Act,,SIDG19810,Driver genes
+MLLT6,fusion,fusion,,,SIDG19811,Driver genes
+MN1,Act,"oncogene, fusion",,,SIDG19870,Driver genes
+MPL,Act,oncogene,,,SIDG19953,Driver genes
+MRTFA,ambiguous,"oncogene, TSG, fusion",,,SIDG19775,Driver genes
+MSH2,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG20308,"Driver genes, CPV genes"
+MSH6,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG20313,"Driver genes, CPV genes"
+MSI2,ambiguous,"oncogene, fusion",ambiguous,,SIDG20315,Driver genes
+MSN,ambiguous,fusion,ambiguous,,SIDG20359,Driver genes
+MTCP1,Act,"oncogene, fusion",Act,,SIDG20623,Driver genes
+MTOR,Act,oncogene,Act,,SIDG20992,Driver genes
+MUC1,fusion,fusion,,,SIDG21035,Driver genes
+MUTYH,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG21067,"Driver genes, CPV genes"
+MYB,Act,"oncogene, fusion",,,SIDG21087,Driver genes
+MYC,Act,"oncogene, fusion",Act,,SIDG21097,Driver genes
+MYCL,Act,oncogene,,,SIDG21103,Driver genes
+MYCN,Act,oncogene,Act,,SIDG21108,Driver genes
+MYD88,Act,oncogene,Act,,SIDG21113,Driver genes
+MYH11,Act,fusion,Act,,SIDG21129,Driver genes
+MYH9,ambiguous,"TSG, fusion",Act,,SIDG21127,Driver genes
+MYO5A,ambiguous,fusion,ambiguous,,SIDG21183,Driver genes
+MYOD1,Act,oncogene,,,SIDG21206,Driver genes
+NAB2,LoF,"TSG, fusion",,,SIDG21282,Driver genes
+NBEA,ambiguous,,ambiguous,,SIDG21399,Driver genes
+NBN,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG21410,"Driver genes, CPV genes"
+NCOA1,ambiguous,fusion,ambiguous,,SIDG21479,Driver genes
+NCOA2,Act,"oncogene, fusion",Act,,SIDG21480,Driver genes
+NCOA4,LoF,"TSG, fusion",,,SIDG21482,Driver genes
+NCOR1,LoF,TSG,LoF,,SIDG21491,Driver genes
+NCOR2,ambiguous,TSG,Act,,SIDG21495,Driver genes
+NDRG1,LoF,"TSG, fusion",,,SIDG21528,Driver genes
+NEFH,ambiguous,,ambiguous,,SIDG21678,Driver genes
+NF1,LoF,"TSG, fusion",LoF,Tumor Suppressor Gene,SIDG21750,"Driver genes, CPV genes"
+NF2,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG21764,"Driver genes, CPV genes"
+NFATC2,ambiguous,"oncogene, fusion",ambiguous,,SIDG21769,Driver genes
+NFE2L2,ambiguous,"oncogene, TSG",Act,,SIDG21776,Driver genes
+NFIB,fusion,fusion,,,SIDG21784,Driver genes
+NFKB2,ambiguous,"oncogene, TSG, fusion",ambiguous,,SIDG21794,Driver genes
+NFKBIA,LoF,,LoF,,SIDG21795,Driver genes
+NFKBIE,ambiguous,TSG,ambiguous,,SIDG21798,Driver genes
+NIN,LoF,fusion,LoF,,SIDG21856,Driver genes
+NIPBL,LoF,,LoF,,SIDG21876,Driver genes
+NKTR,Act,,Act,,SIDG21903,Driver genes
+NKX2-1,ambiguous,"oncogene, TSG",ambiguous,,SIDG21906,Driver genes
+NONO,LoF,fusion,LoF,,SIDG22052,Driver genes
+NOTCH1,ambiguous,"oncogene, TSG, fusion",ambiguous,,SIDG22079,Driver genes
+NOTCH2,ambiguous,"oncogene, TSG",ambiguous,,SIDG22080,Driver genes
+NPEPPS,LoF,,LoF,,SIDG22120,Driver genes
+NPM1,ambiguous,"oncogene, fusion",ambiguous,,SIDG22155,Driver genes
+NPRL2,LoF,,LoF,,SIDG22216,Driver genes
+NR4A3,Act,"oncogene, fusion",,,SIDG22262,Driver genes
+NRAS,Act,oncogene,Act,,SIDG22269,Driver genes
+NRG1,ambiguous,"TSG, fusion",Act,,SIDG22290,Driver genes
+NRK,Act,,Act,,SIDG22302,Driver genes
+NRP1,LoF,,LoF,,SIDG22308,Driver genes
+NSD1,Act,fusion,Act,,SIDG22319,Driver genes
+NSD2,Act,"oncogene, fusion",,,SIDG22320,Driver genes
+NSD3,Act,"oncogene, fusion",,,SIDG22321,Driver genes
+NT5C2,Act,oncogene,,,SIDG22350,Driver genes
+NT5C3A,LoF,,LoF,,SIDG22351,Driver genes
+NTRK1,ambiguous,"oncogene, TSG, fusion",Act,,SIDG22386,Driver genes
+NTRK3,Act,"oncogene, fusion",Act,,SIDG22388,Driver genes
+NUMA1,Act,fusion,Act,,SIDG22449,Driver genes
+NUP214,Act,fusion,Act,,SIDG22483,Driver genes
+NUP98,Act,"oncogene, fusion",,,SIDG22470,Driver genes
+NUTM1,Act,"oncogene, fusion",,,SIDG22501,Driver genes
+NUTM2B,fusion,fusion,,,SIDG22504,Driver genes
+NUTM2D,fusion,fusion,,,SIDG22506,Driver genes
+NXF1,Act,,Act,,SIDG22514,Driver genes
+OLIG2,Act,"oncogene, fusion",,,SIDG22651,Driver genes
+P2RY8,Act,"oncogene, fusion",Act,,SIDG23756,Driver genes
+PABPC1,ambiguous,,ambiguous,,SIDG23785,Driver genes
+PAFAH1B2,fusion,fusion,,,SIDG23834,Driver genes
+PAK2,Act,,Act,,SIDG23860,Driver genes
+PALB2,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG23865,"Driver genes, CPV genes"
+PARP4,ambiguous,,ambiguous,,SIDG23935,Driver genes
+PATZ1,LoF,"TSG, fusion",,,SIDG23965,Driver genes
+PAX3,Act,"oncogene, fusion",,,SIDG23972,Driver genes
+PAX5,ambiguous,"oncogene, TSG, fusion",NaN,Oncogene,SIDG23974,"Driver genes, CPV genes"
+PAX7,fusion,fusion,,,SIDG23977,Driver genes
+PAX8,fusion,fusion,,,SIDG23978,Driver genes
+PBRM1,LoF,TSG,LoF,,SIDG23994,Driver genes
+PBX1,Act,"oncogene, fusion",,,SIDG23995,Driver genes
+PCBP1,Act,,Act,,SIDG24016,Driver genes
+PCDH17,LoF,,LoF,,SIDG24042,Driver genes
+PCM1,fusion,fusion,,,SIDG24131,Driver genes
+PCMTD1,LoF,,LoF,,SIDG24133,Driver genes
+PDCD1LG2,Act,"oncogene, fusion",Act,,SIDG24195,Driver genes
+PDE4DIP,Act,fusion,Act,,SIDG24232,Driver genes
+PDGFB,Act,"oncogene, fusion",,,SIDG24251,Driver genes
+PDGFRA,Act,"oncogene, fusion",Act,,SIDG24254,Driver genes
+PDGFRB,Act,"oncogene, fusion",Act,,SIDG24255,Driver genes
+PDPR,ambiguous,,ambiguous,,SIDG24291,Driver genes
+PEG3,Act,,Act,,SIDG24334,Driver genes
+PER1,LoF,"TSG, fusion",,,SIDG24349,Driver genes
+PHF6,LoF,TSG,LoF,,SIDG24545,Driver genes
+PHOX2B,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG24589,"Driver genes, CPV genes"
+PICALM,fusion,fusion,,,SIDG24615,Driver genes
+PIK3CA,Act,oncogene,Act,,SIDG24670,Driver genes
+PIK3CB,Act,oncogene,Act,,SIDG24671,Driver genes
+PIK3R1,LoF,TSG,LoF,,SIDG24679,Driver genes
+PIM1,ambiguous,"oncogene, fusion",LoF,,SIDG24689,Driver genes
+PLAG1,Act,"oncogene, fusion",Act,,SIDG24936,Driver genes
+PLCB4,Act,,Act,,SIDG24951,Driver genes
+PLCG1,Act,"oncogene, fusion",Act,,SIDG24959,Driver genes
+PML,LoF,"TSG, fusion",LoF,,SIDG25091,Driver genes
+PMS1,LoF,NaN,NaN,Tumor Suppressor Gene,SIDG25102,CPV genes
+PMS2,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG25103,"Driver genes, CPV genes"
+POLD1,ambiguous,TSG,Act,Tumor Suppressor Gene,SIDG25194,"Driver genes, CPV genes"
+POLE,ambiguous,TSG,ambiguous,Tumor Suppressor Gene,SIDG25201,"Driver genes, CPV genes"
+POLH,LoF,NaN,NaN,Tumor Suppressor Gene,SIDG25207,CPV genes
+POLQ,ambiguous,"oncogene, TSG",ambiguous,,SIDG25215,Driver genes
+POT1,ambiguous,TSG,ambiguous,Not classified,SIDG25294,"Driver genes, CPV genes"
+POU2AF1,Act,"oncogene, fusion",,,SIDG25312,Driver genes
+POU2F2,ambiguous,,ambiguous,,SIDG25314,Driver genes
+POU5F1,Act,"oncogene, fusion",,,SIDG25323,Driver genes
+PPARG,LoF,"TSG, fusion",,,SIDG25346,Driver genes
+PPFIBP1,fusion,fusion,,,SIDG25367,Driver genes
+PPM1D,ambiguous,oncogene,LoF,,SIDG25493,Driver genes
+PPP2R1A,ambiguous,TSG,Act,,SIDG25582,Driver genes
+PPP3CA,LoF,,LoF,,SIDG25599,Driver genes
+PPP6C,LoF,TSG,LoF,,SIDG25616,Driver genes
+PPT2,Act,,Act,,SIDG25624,Driver genes
+PRCC,fusion,fusion,,,SIDG25689,Driver genes
+PRDM1,LoF,TSG,LoF,,SIDG25693,Driver genes
+PRDM16,Act,"oncogene, fusion",,,SIDG25707,Driver genes
+PRDM2,ambiguous,,ambiguous,,SIDG25694,Driver genes
+PREX2,Act,oncogene,Act,,SIDG25750,Driver genes
+PRF1,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG25751,"Driver genes, CPV genes"
+PRKACA,Act,oncogene,,,SIDG25774,Driver genes
+PRKAR1A,ambiguous,"oncogene, TSG, fusion",LoF,Not classified,SIDG25781,"Driver genes, CPV genes"
+PRKCB,Act,,Act,,SIDG25789,Driver genes
+PRKCD,LoF,,LoF,,SIDG25790,Driver genes
+PRKD2,ambiguous,,ambiguous,,SIDG25801,Driver genes
+PRR14,LoF,,LoF,,SIDG25907,Driver genes
+PRRX1,Act,fusion,Act,,SIDG25955,Driver genes
+PSIP1,Act,"oncogene, fusion",Act,,SIDG26048,Driver genes
+PTCH1,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG26185,"Driver genes, CPV genes"
+PTEN,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG26200,"Driver genes, CPV genes"
+PTK6,ambiguous,"oncogene, TSG",,,SIDG26243,Driver genes
+PTMA,LoF,,LoF,,SIDG26246,Driver genes
+PTPN11,Act,oncogene,Act,Oncogene,SIDG26287,"Driver genes, CPV genes"
+PTPN13,LoF,TSG,LoF,,SIDG26289,Driver genes
+PTPN14,LoF,,LoF,,SIDG26290,Driver genes
+PTPN6,LoF,,LoF,,SIDG26284,Driver genes
+PTPRB,ambiguous,TSG,ambiguous,,SIDG26299,Driver genes
+PTPRC,ambiguous,TSG,Act,,SIDG26300,Driver genes
+PTPRD,Act,,Act,,SIDG26302,Driver genes
+PTPRK,LoF,"TSG, fusion",LoF,,SIDG26312,Driver genes
+PTPRT,LoF,TSG,LoF,,SIDG26320,Driver genes
+QKI,ambiguous,"oncogene, TSG",LoF,,SIDG26437,Driver genes
+RABEP1,LoF,fusion,LoF,,SIDG26561,Driver genes
+RAC1,Act,oncogene,Act,,SIDG26576,Driver genes
+RAD21,ambiguous,"oncogene, TSG",LoF,,SIDG26601,Driver genes
+RAD51B,LoF,"TSG, fusion",,,SIDG26615,Driver genes
+RAD51C,LoF,NaN,NaN,Tumor Suppressor Gene,SIDG26616,CPV genes
+RAD51D,LoF,NaN,NaN,Tumor Suppressor Gene,SIDG26617,CPV genes
+RAF1,Act,"oncogene, fusion",Act,,SIDG26631,Driver genes
+RALGDS,Act,,Act,,SIDG26649,Driver genes
+RANBP2,LoF,"TSG, fusion",LoF,,SIDG26663,Driver genes
+RAP1GDS1,Act,"oncogene, fusion",Act,,SIDG26690,Driver genes
+RARA,Act,"oncogene, fusion",Act,,SIDG26706,Driver genes
+RASA1,LoF,,LoF,,SIDG26727,Driver genes
+RASA2,LoF,,LoF,,SIDG26728,Driver genes
+RB1,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG26775,"Driver genes, CPV genes"
+RBFOX1,Act,,Act,,SIDG26800,Driver genes
+RBFOX2,Act,,Act,,SIDG26801,Driver genes
+RBM10,LoF,TSG,LoF,,SIDG26815,Driver genes
+RBM15,LoF,fusion,LoF,,SIDG26824,Driver genes
+RBM38,ambiguous,,ambiguous,,SIDG26855,Driver genes
+RBM39,Act,,Act,,SIDG26856,Driver genes
+RECQL4,ambiguous,"oncogene, TSG",LoF,Tumor Suppressor Gene,SIDG27002,"Driver genes, CPV genes"
+REL,Act,oncogene,,,SIDG27017,Driver genes
+RELA,Act,,Act,,SIDG27018,Driver genes
+RET,Act,"oncogene, fusion",Act,Oncogene,SIDG27044,"Driver genes, CPV genes"
+RGL3,Act,,Act,,SIDG27121,Driver genes
+RGPD3,ambiguous,,ambiguous,,SIDG27130,Driver genes
+RGS7,LoF,,LoF,,SIDG27143,Driver genes
+RHOA,ambiguous,"oncogene, TSG",Act,,SIDG27184,Driver genes
+RHOH,LoF,"TSG, fusion",,,SIDG27194,Driver genes
+RHPN2,ambiguous,,ambiguous,,SIDG27216,Driver genes
+RIPK1,ambiguous,,ambiguous,,SIDG27256,Driver genes
+RMI2,LoF,"TSG, fusion",,,SIDG27287,Driver genes
+RNF213,Act,fusion,Act,,SIDG29169,Driver genes
+RNF43,LoF,TSG,LoF,,SIDG29110,Driver genes
+RNF6,LoF,,LoF,,SIDG29082,Driver genes
+ROS1,Act,"oncogene, fusion",,,SIDG31261,Driver genes
+RPL10,LoF,TSG,LoF,,SIDG31587,Driver genes
+RPL22,ambiguous,"TSG, fusion",Act,,SIDG31990,Driver genes
+RPL5,LoF,TSG,,,SIDG31334,Driver genes
+RPN1,fusion,fusion,,,SIDG32635,Driver genes
+RPS3A,ambiguous,,ambiguous,,SIDG32712,Driver genes
+RPS6KA3,LoF,,LoF,,SIDG32814,Driver genes
+RRAGC,Act,,Act,,SIDG33406,Driver genes
+RRAS2,Act,,Act,,SIDG33409,Driver genes
+RSPH10B2,ambiguous,,ambiguous,,SIDG33465,Driver genes
+RSPO2,LoF,"TSG, fusion",,,SIDG33468,Driver genes
+RSPO3,Act,"oncogene, fusion",,,SIDG33469,Driver genes
+RUNX1,ambiguous,"oncogene, TSG, fusion",ambiguous,Oncogene,SIDG33527,"Driver genes, CPV genes"
+RUNX1T1,ambiguous,"oncogene, TSG, fusion",ambiguous,,SIDG33529,Driver genes
+RXRA,LoF,,LoF,,SIDG33553,Driver genes
+SALL4,Act,oncogene,Act,,SIDG33629,Driver genes
+SATB1,Act,,Act,,SIDG33700,Driver genes
+SBDS,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG33711,"Driver genes, CPV genes"
+SDC4,LoF,fusion,LoF,,SIDG33897,Driver genes
+SDHA,LoF,TSG,NaN,Not classified,SIDG33914,"Driver genes, CPV genes"
+SDHAF2,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG33916,"Driver genes, CPV genes"
+SDHB,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG33922,"Driver genes, CPV genes"
+SDHC,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG33923,"Driver genes, CPV genes"
+SDHD,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG33928,"Driver genes, CPV genes"
+SEPTIN9,Act,,Act,,SIDG34099,Driver genes
+SET,Act,"oncogene, fusion",Act,,SIDG34205,Driver genes
+SETBP1,Act,"oncogene, fusion",Act,Oncogene,SIDG34206,"Driver genes, CPV genes"
+SETD1B,LoF,,LoF,,SIDG34208,Driver genes
+SETD2,LoF,TSG,LoF,,SIDG34209,Driver genes
+SETDB1,Act,,Act,,SIDG34218,Driver genes
+SF3B1,Act,oncogene,Act,,SIDG34252,Driver genes
+SFMBT2,Act,,Act,,SIDG34261,Driver genes
+SFPQ,LoF,"TSG, fusion",,,SIDG34263,Driver genes
+SFRP4,LoF,TSG,,,SIDG34270,Driver genes
+SGK1,ambiguous,,ambiguous,,SIDG34300,Driver genes
+SH2B3,ambiguous,TSG,ambiguous,Not classified,SIDG34322,"Driver genes, CPV genes"
+SH3GL1,Act,"oncogene, fusion",,,SIDG34345,Driver genes
+SIN3A,Act,,Act,,SIDG34465,Driver genes
+SIRPA,LoF,,LoF,,SIDG34475,Driver genes
+SIX1,ambiguous,oncogene,LoF,,SIDG34493,Driver genes
+SLC34A2,LoF,"TSG, fusion",,,SIDG34911,Driver genes
+SLC45A3,LoF,fusion,LoF,,SIDG34994,Driver genes
+SMAD2,LoF,TSG,LoF,,SIDG35068,Driver genes
+SMAD3,LoF,TSG,LoF,,SIDG35069,Driver genes
+SMAD4,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG35070,"Driver genes, CPV genes"
+SMARCA1,LoF,,LoF,,SIDG35081,Driver genes
+SMARCA4,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG35083,"Driver genes, CPV genes"
+SMARCB1,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG35088,"Driver genes, CPV genes"
+SMARCD1,ambiguous,TSG,ambiguous,,SIDG35091,Driver genes
+SMARCE1,LoF,TSG,NaN,Not classified,SIDG35094,"Driver genes, CPV genes"
+SMC1A,Act,,Act,,SIDG35103,Driver genes
+SMO,Act,oncogene,Act,,SIDG35197,Driver genes
+SND1,Act,"oncogene, fusion",,,SIDG35283,Driver genes
+SOCS1,LoF,TSG,LoF,,SIDG36031,Driver genes
+SOHLH2,Act,,Act,,SIDG36057,Driver genes
+SOS1,Act,NaN,Act,Not classified,SIDG36071,"Driver genes, CPV genes"
+SOX17,Act,,Act,,SIDG36100,Driver genes
+SOX2,Act,oncogene,,,SIDG36082,Driver genes
+SOX21,LoF,,LoF,,SIDG36102,Driver genes
+SOX9,LoF,,LoF,,SIDG36092,Driver genes
+SP140,ambiguous,,ambiguous,,SIDG36119,Driver genes
+SPEN,ambiguous,TSG,ambiguous,,SIDG36265,Driver genes
+SPOP,ambiguous,TSG,Act,,SIDG36335,Driver genes
+SRC,Act,oncogene,,,SIDG36405,Driver genes
+SRGAP3,Act,,Act,,SIDG36427,Driver genes
+SRSF2,Act,oncogene,Act,,SIDG36484,Driver genes
+SRSF3,Act,"oncogene, fusion",,,SIDG36485,Driver genes
+SS18,fusion,fusion,,,SIDG36501,Driver genes
+SS18L1,fusion,fusion,,,SIDG36502,Driver genes
+SSX1,Act,"oncogene, fusion",,,SIDG36551,Driver genes
+SSX2,Act,"oncogene, fusion",,,SIDG36552,Driver genes
+SSX4,Act,"oncogene, fusion",,,SIDG36556,Driver genes
+STAG2,LoF,TSG,LoF,,SIDG36646,Driver genes
+STAT3,ambiguous,oncogene,ambiguous,Oncogene,SIDG36681,"Driver genes, CPV genes"
+STAT5B,ambiguous,"oncogene, TSG, fusion",ambiguous,,SIDG36684,Driver genes
+STAT6,Act,"oncogene, fusion",Act,,SIDG36685,Driver genes
+STIL,ambiguous,"oncogene, fusion",ambiguous,,SIDG36701,Driver genes
+STK11,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG36713,"Driver genes, CPV genes"
+STRN,ambiguous,fusion,ambiguous,,SIDG36778,Driver genes
+SUFU,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG36842,"Driver genes, CPV genes"
+SUSD2,Act,,Act,,SIDG36927,Driver genes
+SUZ12,ambiguous,"oncogene, TSG, fusion",Act,,SIDG36936,Driver genes
+SYK,Act,"oncogene, fusion",,,SIDG36972,Driver genes
+TAF15,ambiguous,"oncogene, fusion",ambiguous,,SIDG37106,Driver genes
+TAL1,Act,"oncogene, fusion",,,SIDG37113,Driver genes
+TAL2,Act,"oncogene, fusion",,,SIDG37114,Driver genes
+TBL1XR1,ambiguous,"oncogene, TSG, fusion",LoF,,SIDG37273,Driver genes
+TBX3,ambiguous,"oncogene, TSG",LoF,,SIDG37288,Driver genes
+TCEA1,fusion,fusion,,,SIDG37315,Driver genes
+TCF12,fusion,fusion,,,SIDG37348,Driver genes
+TCF3,ambiguous,"oncogene, TSG, fusion",,,SIDG37339,Driver genes
+TCF4,Act,,Act,,SIDG37341,Driver genes
+TCF7L2,Act,"oncogene, fusion",Act,,SIDG37347,Driver genes
+TCIRG1,LoF,,LoF,,SIDG37361,Driver genes
+TCL1A,Act,"oncogene, fusion",,,SIDG37362,Driver genes
+TEC,LoF,,LoF,,SIDG37424,Driver genes
+TENT5C,LoF,TSG,LoF,,SIDG08401,Driver genes
+TERT,ambiguous,"oncogene, TSG",NaN,Oncogene,SIDG37472,"Driver genes, CPV genes"
+TET1,ambiguous,"oncogene, TSG, fusion",ambiguous,,SIDG37480,Driver genes
+TET2,LoF,TSG,LoF,,SIDG37482,Driver genes
+TFAP4,LoF,,LoF,,SIDG37540,Driver genes
+TFE3,Act,"oncogene, fusion",,,SIDG37549,Driver genes
+TFEB,Act,"oncogene, fusion",,,SIDG37550,Driver genes
+TFG,LoF,fusion,LoF,,SIDG37555,Driver genes
+TGFBR2,LoF,TSG,LoF,,SIDG37577,Driver genes
+TGIF1,LoF,,LoF,,SIDG37582,Driver genes
+TLL1,Act,,Act,,SIDG37773,Driver genes
+TLX1,Act,"oncogene, fusion",,,SIDG37790,Driver genes
+TLX3,Act,"oncogene, fusion",,,SIDG37793,Driver genes
+TMEM127,LoF,TSG,NaN,Not classified,SIDG37976,"Driver genes, CPV genes"
+TMPRSS2,fusion,fusion,,,SIDG38164,Driver genes
+TNC,ambiguous,,ambiguous,,SIDG38209,Driver genes
+TNFAIP3,LoF,TSG,LoF,,SIDG38213,Driver genes
+TNFRSF14,LoF,TSG,LoF,,SIDG38237,Driver genes
+TNFRSF17,Act,"oncogene, fusion",,,SIDG38239,Driver genes
+TOP1,LoF,fusion,LoF,,SIDG38338,Driver genes
+TOP2A,Act,,Act,,SIDG38342,Driver genes
+TP53,ambiguous,"oncogene, TSG, fusion",LoF,Tumor Suppressor Gene,SIDG38363,"Driver genes, CPV genes"
+TP63,ambiguous,"oncogene, TSG",ambiguous,,SIDG38385,Driver genes
+TPM3,LoF,"TSG, fusion",,,SIDG38409,Driver genes
+TPM4,fusion,fusion,,,SIDG38419,Driver genes
+TPR,fusion,fusion,,,SIDG38432,Driver genes
+TRA,fusion,fusion,,,SIDG38485,Driver genes
+TRAF3,LoF,,LoF,,SIDG38541,Driver genes
+TRAF7,LoF,TSG,,,SIDG38550,Driver genes
+TRB,fusion,fusion,,,SIDG38705,Driver genes
+TRD,fusion,fusion,,,SIDG38834,Driver genes
+TRIM24,ambiguous,"oncogene, TSG, fusion",Act,,SIDG39069,Driver genes
+TRIM27,Act,"oncogene, fusion",,,SIDG39073,Driver genes
+TRIM33,ambiguous,"TSG, fusion",ambiguous,,SIDG39079,Driver genes
+TRIM49C,Act,,Act,,SIDG39101,Driver genes
+TRIP11,Act,fusion,Act,,SIDG39174,Driver genes
+TRRAP,ambiguous,oncogene,ambiguous,,SIDG39494,Driver genes
+TSC1,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG39640,"Driver genes, CPV genes"
+TSC2,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG39641,"Driver genes, CPV genes"
+TSHR,Act,oncogene,,,SIDG39662,Driver genes
+U2AF1,Act,oncogene,Act,,SIDG40048,Driver genes
+U2AF2,Act,,Act,,SIDG40051,Driver genes
+UBE2A,LoF,,LoF,,SIDG40094,Driver genes
+UBE2D2,Act,,Act,,SIDG40103,Driver genes
+UBR5,ambiguous,oncogene,ambiguous,,SIDG40228,Driver genes
+UGT2B17,Act,,Act,,SIDG40313,Driver genes
+USP44,LoF,,LoF,,SIDG40580,Driver genes
+USP6,Act,"oncogene, fusion",Act,,SIDG40461,Driver genes
+USP8,ambiguous,oncogene,ambiguous,,SIDG40464,Driver genes
+USP9X,LoF,,LoF,,SIDG40466,Driver genes
+VAV1,Act,,Act,,SIDG40639,Driver genes
+VHL,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG40703,"Driver genes, CPV genes"
+WAS,ambiguous,oncogene,LoF,Not classified,SIDG40973,"Driver genes, CPV genes"
+WDCP,fusion,fusion,,,SIDG41021,Driver genes
+WDR45,LoF,,LoF,,SIDG41061,Driver genes
+WIF1,LoF,"TSG, fusion",,,SIDG41133,Driver genes
+WNK2,ambiguous,,ambiguous,,SIDG41146,Driver genes
+WNK4,ambiguous,,ambiguous,,SIDG41148,Driver genes
+WRN,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG41173,"Driver genes, CPV genes"
+WT1,ambiguous,"oncogene, TSG, fusion",LoF,Tumor Suppressor Gene,SIDG41181,"Driver genes, CPV genes"
+WWTR1,Act,"oncogene, fusion",,,SIDG41198,Driver genes
+XPA,LoF,TSG,NaN,Tumor Suppressor Gene,SIDG41252,"Driver genes, CPV genes"
+XPC,LoF,TSG,LoF,Tumor Suppressor Gene,SIDG41254,"Driver genes, CPV genes"
+XPO1,Act,oncogene,Act,,SIDG41258,Driver genes
+YWHAE,LoF,"TSG, fusion",,,SIDG41361,Driver genes
+ZBTB16,ambiguous,"TSG, fusion",ambiguous,,SIDG41438,Driver genes
+ZBTB20,Act,,Act,,SIDG41441,Driver genes
+ZBTB7B,Act,,Act,,SIDG41424,Driver genes
+ZCRB1,LoF,,LoF,,SIDG41513,Driver genes
+ZEB1,LoF,,LoF,,SIDG41549,Driver genes
+ZFHX3,LoF,TSG,LoF,,SIDG41569,Driver genes
+ZFP36L1,LoF,,LoF,,SIDG41579,Driver genes
+ZFX,LoF,,LoF,,SIDG41602,Driver genes
+ZMYM2,fusion,fusion,,,SIDG41654,Driver genes
+ZNF148,Act,,Act,,SIDG41805,Driver genes
+ZNF165,LoF,,LoF,,SIDG41817,Driver genes
+ZNF208,ambiguous,,ambiguous,,SIDG41848,Driver genes
+ZNF331,LoF,"TSG, fusion",,,SIDG41941,Driver genes
+ZNF384,fusion,fusion,,,SIDG41967,Driver genes
+ZNF429,LoF,,LoF,,SIDG41999,Driver genes
+ZNF521,Act,"oncogene, fusion",Act,,SIDG42069,Driver genes
+ZNF626,ambiguous,,ambiguous,,SIDG42171,Driver genes
+ZNF680,ambiguous,,ambiguous,,SIDG42214,Driver genes
+ZNF721,ambiguous,,ambiguous,,SIDG42255,Driver genes
+ZNF780A,Act,,Act,,SIDG42307,Driver genes
+ZNF814,Act,,Act,,SIDG42334,Driver genes
+ZNF93,LoF,,LoF,,SIDG41755,Driver genes
+ZNRF3,LoF,,LoF,,SIDG42403,Driver genes
+ZRSR2,LoF,TSG,LoF,,SIDG42422,Driver genes
+ZXDB,LoF,,LoF,,SIDG42467,Driver genes

@@ -45,7 +45,7 @@ from util import (
 NAME = "sim"
 N_DATASETS = 5
 NLIVE = 50
-MAX_STEPS = 5
+MAX_STEPS = 3
 
 workspace_root = here.parent
 sim_path = workspace_root / "dataset" / "ic50_sim"
@@ -71,14 +71,14 @@ n_latent = loaded["n_latent"]
 n_datasets = len(loaded["x_array"])
 
 coef_mean_priors = [
-    af.GaussianPrior(mean=1.0, sigma=2.0),       # log_ic50
+    af.GaussianPrior(mean=0.0, sigma=2.0),       # log_ic50 (ln µM)
     af.GaussianPrior(mean=0.0, sigma=1.0),       # n_log
     af.GaussianPrior(mean=35000.0, sigma=10000.0),  # base
 ]
 coef_matrix_prior_sigmas = [0.5, 0.5, 6000.0]
 hill_priors_per_dataset = [
     (
-        af.GaussianPrior(mean=1.0, sigma=1.0),
+        af.GaussianPrior(mean=0.0, sigma=2.0),
         af.GaussianPrior(mean=0.0, sigma=0.5),
         af.GaussianPrior(mean=35000.0, sigma=10000.0),
     )
@@ -99,6 +99,7 @@ recovered = run_ep_fit(
     hill_priors_per_dataset=hill_priors_per_dataset,
     nlive=NLIVE,
     max_steps=MAX_STEPS,
+    true_params_list=loaded["true_params_list"],
 )
 wall_time = time.time() - t_start
 

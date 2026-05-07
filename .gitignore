@@ -11,8 +11,12 @@ __pycache__/
 .vscode/
 
 # Local raw data drops (mirrors concr convention)
-dataset/**/_sample/raw/
+dataset/real/raw/
+dataset/real/rnaseq_all_*.csv
 *.pkl
+
+# Windows download metadata (Zone.Identifier files)
+*:Zone.Identifier
 
 # AutoFit search output (large; only summaries committed via scripts/results/)
 output/

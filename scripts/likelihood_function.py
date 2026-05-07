@@ -62,7 +62,7 @@ from util import hill_curve, plot_dataset
 
 workspace_root = here.parent
 sim_path = workspace_root / "dataset" / "ic50_sim"
-real_path = workspace_root / "dataset" / "cancer_real__drug_1073"
+real_path = workspace_root / "dataset" / "real" / "drug_1003"
 plot_dir = sim_path / "likelihood_function"
 plot_dir.mkdir(parents=True, exist_ok=True)
 
@@ -252,23 +252,25 @@ assert log_L_global_wrong < log_L_global_true, (
 __Real Data Sanity Check__
 
 The same likelihood expression should be runnable on real GDSC2 data. Here
-we load `dataset_20`, the cell line we previewed in `simulator.py`, and
-evaluate the Hill log-likelihood at a hand-tuned Hill fit chosen by eye:
+we load `dataset_0` from the drug 1003 (Camptothecin) sample (which has
+clean dose-response curves with sub-µM IC50s) and evaluate the Hill log-
+likelihood at a hand-tuned fit chosen by eye:
 
-  - `log_ic50 ≈ 1.5`  (curve drops near the upper end of the dose range)
-  - `n_log = 0.0`     (n = 1, a moderate slope)
-  - `base ≈ y[0]`     (top plateau matches the lowest-dose intensity)
+  - `log_ic50 ≈ -3.0`  (~0.05 µM, near the middle of the data range)
+  - `n_log = 0.0`      (n = 1, a moderate slope)
+  - `base ≈ y[0]`      (top plateau matches the lowest-dose intensity)
 
-A real fit (e.g. via AutoFit) would replace these hand-tuned values with
-the posterior median, but for a sanity check this is enough to confirm
-the likelihood is finite and the plotting works on real data.
+A real fit (e.g. via AutoFit, see `scripts/ep_real.py`) would replace these
+hand-tuned values with the posterior median, but for a sanity check this is
+enough to confirm the likelihood is finite and the plotting works on real
+data.
 """
-real_ds = real_path / "dataset_20"
+real_ds = real_path / "dataset_0"
 x_real = np.load(real_ds / "x.npy")
 y_real = np.load(real_ds / "y.npy")
 info_real = json.load(open(real_ds / "info.json"))
 
-hand_tuned = {"log_ic50": 1.5, "n_log": 0.0, "base": float(y_real[0])}
+hand_tuned = {"log_ic50": -3.0, "n_log": 0.0, "base": float(y_real[0])}
 chi2_real, log_L_real = chi_sq_and_log_L(
     x_real,
     y_real,
@@ -279,7 +281,7 @@ chi2_real, log_L_real = chi_sq_and_log_L(
 )
 
 print()
-print("Real GDSC2 drug-1073 dataset_20 with hand-tuned Hill fit:")
+print("Real GDSC2 drug 1003 (Camptothecin) dataset_0 with hand-tuned Hill fit:")
 print(
     f"  log_ic50={hand_tuned['log_ic50']},  "
     f"n=1.0,  base={hand_tuned['base']:.0f}"
@@ -291,7 +293,7 @@ plot_dataset(
     x_real,
     y_real,
     info_real["noise_sigma"],
-    title=f"Real dataset_20 + hand-tuned fit  |  log L = {log_L_real:.2f}",
+    title=f"Real drug 1003 dataset_0 + hand-tuned fit  |  log L = {log_L_real:.2f}",
     fit_params=hand_tuned,
     output_path=plot_dir / "real_fit.png",
 )

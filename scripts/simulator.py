@@ -103,17 +103,17 @@ __Real Data Preview__
 
 Before producing any simulated data, we load and plot one example real
 GDSC2 cell line so the reader knows exactly what shape, amplitude, and
-noise level the simulator is targeting. The dataset chosen here
-(`cancer_real__drug_1073/dataset_20`) is a representative drug-1073 cell
-line with a clear dose-response decline (intensity drops from ~63 000
-counts at low dose to ~34 000 at high dose).
+noise level the simulator is targeting. The dataset chosen here is
+`dataset/real/drug_1003/dataset_0` — a Camptothecin screen with a clean
+dose-response decline (intensity drops from ~34 000 to ~18 000 counts
+across the 7-dose series).
 
 Real datasets do not come with ground-truth Hill parameters, so we call
 `util.plot_dataset` *without* a `true_params` overlay. The same function
 is used here for real data and below for simulated data, guaranteeing
-that the two are visually comparable.
+that the two are visually comparable on the same `ln(µM)` x-axis.
 """
-real_dataset_path = workspace_root / "dataset" / "cancer_real__drug_1073" / "dataset_20"
+real_dataset_path = workspace_root / "dataset" / "real" / "drug_1003" / "dataset_0"
 real_x = np.load(real_dataset_path / "x.npy")
 real_y = np.load(real_dataset_path / "y.npy")
 real_info = json.load(open(real_dataset_path / "info.json"))
@@ -122,7 +122,10 @@ plot_dataset(
     real_x,
     real_y,
     real_info["noise_sigma"],
-    title=f"Real GDSC2 drug-1073 cell line (dataset_20, n_doses={real_info['n_doses']})",
+    title=(
+        f"Real GDSC2 drug 1003 (Camptothecin) dataset_0 "
+        f"(n_doses={real_info['n_doses']}, cosmic_id={real_info['cosmic_id']})"
+    ),
     output_path=workspace_root / "dataset" / "ic50_sim" / "real_data_preview.png",
 )
 
@@ -133,15 +136,13 @@ Numerical sizes and noise levels of the simulated sample.
 
  - `N_DATASETS` : how many synthetic cell lines to generate.
  - `N_LATENT`   : dimensionality of the latent gene-expression vector. The
-   real GDSC2 preprocessor in concr uses `N_LATENT = 20` (SVD components);
-   we keep this small here for fast bootstrap run times — bump it later
-   when fitting the real data alongside.
- - `N_DOSES`    : number of concentration points per curve. The median for
-   real drug-1073 data is 7, so we match it.
+   real GDSC2 preprocessor uses 20 SVD components; we keep this small
+   here for fast bootstrap run times — bump it later when fitting the
+   real data alongside.
+ - `N_DOSES`    : number of concentration points per curve. GDSC2 typical
+   single-drug screens use 7 doses at a 3.16x dilution (ln-step ~1.15).
  - `NOISE_SIGMA`: per-point Gaussian noise std-dev on the intensity scale.
-   The hard-coded value 9099 mirrors concr; it is a plate-and-instrument
-   specific noise level and is not derivable from any GDSC2 publication —
-   keeping it here for compatibility with the existing real-data pipeline.
+   Mirrors concr's 9099; plate-and-instrument-specific.
  - `RANDOM_SEED`: deterministic seed so the 5-dataset sample is reproducible.
 """
 N_DATASETS = 5
@@ -158,10 +159,10 @@ Each cell line's Hill parameters are produced as
     hill_params[i] = latent_array[i] @ coef_matrix_true + COEF_MEAN_TRUE
 
 The population-mean Hill parameters `COEF_MEAN_TRUE` are calibrated to put
-the curves in the same regime as real drug-1073 data:
+the curves in the same `ln(µM)` regime as real GDSC2 data:
 
- - `log_ic50 = 1.0` sits comfortably inside the real x range
-   `[0, ln(7) ~ 1.95]`, so each simulated curve shows visible decline.
+ - `log_ic50 = 0.0` (= ln(1 µM)) sits in the middle of the simulated x
+   range `[-3.45, 3.45]`, so each curve shows a clear decline.
  - `n_log   = 0.0` gives a Hill coefficient of `n = exp(0) = 1`, a moderate
    slope similar to typical real curves.
  - `base    = 35000` matches the median real `y_max` (~37k INTENSITY counts).
@@ -170,7 +171,7 @@ the curves in the same regime as real drug-1073 data:
 that the per-cell-line variation in each Hill parameter is sensible:
 log_ic50 std ~0.3, n_log std ~0.1, base std ~3000.
 """
-COEF_MEAN_TRUE = np.array([1.0, 0.0, 35000.0])
+COEF_MEAN_TRUE = np.array([0.0, 0.0, 35000.0])
 
 rng = np.random.default_rng(RANDOM_SEED)
 
@@ -201,21 +202,21 @@ hill_params_true = latent_array @ coef_matrix_true + COEF_MEAN_TRUE
 """
 __Concentration Grid__
 
-The real GDSC2 preprocessor in concr defines the per-dataset x-axis as
+The simulated x-axis is `ln(CONC / 1 µM)` for a 7-point geometric
+concentration series at 3.16x dilution (ln-step ~1.15), centred on
+`ln(1 µM) = 0`:
 
-    x = np.log(np.arange(n_doses) + 1)
+    CONC  = [0.032, 0.10, 0.32, 1.0, 3.16, 10, 31.6]  µM
+    x     = ln(CONC) = [-3.45, -2.30, -1.15, 0.0, 1.15, 2.30, 3.45]
 
-(see `concr/simulators/preprocess_cancer_real.py`). This is a synthetic
-monotone log-rank axis: x[0] = 0, x[1] = ln(2), x[2] = ln(3), ..., capped
-at `ln(N_DOSES)`. We use the same formula here so simulated and real
-datasets share an x-axis convention. Range with `N_DOSES = 7`:
-`[0.0, ln(7) ~ 1.946]`.
-
-Note: this differs from the canonical GDSC2 fitting convention
-`x = log2(CONC/maxc) + 9` of Vis et al. 2016. concr's IC50 estimates are
-therefore in this rank-log space and not directly interpretable as µM.
+This matches the canonical GDSC2 single-drug screen layout (see drug 1003,
+1007, 1017 in `dataset/real/raw/GDSC2_public_raw_data_27Oct23.csv`,
+where 7-dose series at 3.16x dilution are standard). It also makes
+`log_ic50` directly interpretable as `ln(µM)`, so the simulator's recovered
+parameters can be compared apples-to-apples with real-data fits and with
+external least-squares pipelines (`scripts/least_squares.py`).
 """
-X_TEMPLATE = np.log(np.arange(N_DOSES) + 1)
+X_TEMPLATE = np.linspace(-3.45, 3.45, N_DOSES)  # ln(µM) over [~0.03, ~32] µM
 
 """
 __Per-Dataset Simulation__

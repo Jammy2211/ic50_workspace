@@ -148,7 +148,6 @@ def plot_dataset(
         x, y, yerr=noise_sigma, fmt="o", color="steelblue", capsize=4, label="Data"
     )
 
-    overlay_ic50 = None
     if true_params is not None:
         y_true = hill_curve(
             x_fine,
@@ -157,7 +156,13 @@ def plot_dataset(
             true_params["base"],
         )
         ax.plot(x_fine, y_true, color="tomato", lw=2, label="True Hill curve")
-        overlay_ic50 = ("tomato", true_params["log_ic50"], "True")
+        ax.axvline(
+            true_params["log_ic50"],
+            color="tomato",
+            linestyle="--",
+            linewidth=1,
+            label=f"True log IC50 = {true_params['log_ic50']:.2f}",
+        )
 
     if fit_params is not None:
         y_fit = hill_curve(
@@ -167,19 +172,15 @@ def plot_dataset(
             fit_params["base"],
         )
         ax.plot(x_fine, y_fit, color="crimson", lw=2, label="Best-fit Hill curve")
-        overlay_ic50 = ("crimson", fit_params["log_ic50"], "Fit")
-
-    if overlay_ic50 is not None:
-        color, log_ic50_val, kind = overlay_ic50
         ax.axvline(
-            log_ic50_val,
-            color=color,
+            fit_params["log_ic50"],
+            color="crimson",
             linestyle="--",
             linewidth=1,
-            label=f"{kind} log IC50 = {log_ic50_val:.2f}",
+            label=f"Fit log IC50 = {fit_params['log_ic50']:.2f}",
         )
 
-    ax.set_xlabel("Log concentration rank (ln(rank+1))")
+    ax.set_xlabel("Log concentration (ln µM)")
     ax.set_ylabel("Intensity")
     if title is None and true_params is not None:
         title = (
@@ -222,15 +223,89 @@ class Hill:
         self.base = base
 
 
+class HillVisualizer(af.Visualizer):
+    """Per-dataset diagnostic plotter wired into AutoFit's image path.
+
+    AutoFit calls `visualize_before_fit` once before the local search and
+    `visualize` after every search iteration. Both write into
+    `paths.image_path`, which AutoFit places under each EP optimisation
+    folder so refits across EP iterations accumulate as separate
+    sub-folders. With `true_params` set on the analysis (sim case), the
+    true Hill curve is overlaid; otherwise only data + best-fit are
+    plotted (real-data case).
+    """
+
+    @staticmethod
+    def visualize_before_fit(analysis, paths, model):
+        x = np.asarray(analysis.x)
+        y = np.asarray(analysis.y)
+        os.makedirs(paths.image_path, exist_ok=True)
+        plot_dataset(
+            x,
+            y,
+            analysis.noise_sigma,
+            title=(
+                "Before fit"
+                + (
+                    f"  |  true log_ic50={analysis.true_params['log_ic50']:.2f}"
+                    if analysis.true_params is not None
+                    else ""
+                )
+            ),
+            true_params=analysis.true_params,
+            output_path=os.path.join(paths.image_path, "hill_curve_data.png"),
+        )
+
+    @staticmethod
+    def visualize(analysis, paths, instance, during_analysis):
+        x = np.asarray(analysis.x)
+        y = np.asarray(analysis.y)
+        fit = {
+            "log_ic50": float(instance.hill.log_ic50),
+            "n_log": float(instance.hill.n_log),
+            "base": float(instance.hill.base),
+        }
+        os.makedirs(paths.image_path, exist_ok=True)
+        kind = "During" if during_analysis else "After"
+        title = (
+            f"{kind} EP  |  fit log_ic50={fit['log_ic50']:.2f}"
+        )
+        if analysis.true_params is not None:
+            title += f"  (true {analysis.true_params['log_ic50']:.2f})"
+        plot_dataset(
+            x,
+            y,
+            analysis.noise_sigma,
+            title=title,
+            true_params=analysis.true_params,
+            fit_params=fit,
+            output_path=os.path.join(paths.image_path, "hill_curve_fit.png"),
+        )
+
+    @staticmethod
+    def visualize_combined(analyses, paths, instance, during_analysis, **kwargs):
+        # Shim around an AutoFit interface mismatch where graphical / joint
+        # update cycles pass extra kwargs the base Visualizer rejects. The
+        # per-dataset plots above already cover what we need.
+        pass
+
+
 class HillAnalysis(af.Analysis):
     """Single-dataset Hill log-likelihood (Gaussian, scalar noise sigma).
 
     Inputs are stored as JAX arrays so the JIT'd inner function can run
     without retracing. `log_likelihood_function` returns a Python float
     so AutoFit handles it exactly like the numpy path.
+
+    `true_params` is optional and is consumed only by `HillVisualizer`
+    (purely informational — never read by `log_likelihood_function`).
+    Pass it for simulator runs to overlay the true Hill curve on every
+    per-iteration plot; leave as `None` for real data.
     """
 
-    def __init__(self, x, y, noise_sigma):
+    Visualizer = HillVisualizer
+
+    def __init__(self, x, y, noise_sigma, true_params=None):
         # use_jax=False: AutoFit calls this analysis directly. We still
         # use JAX inside the likelihood for the jit'd hot path; the flag
         # only switches AutoFit's outer JIT/grad layer (which we don't
@@ -239,6 +314,7 @@ class HillAnalysis(af.Analysis):
         self.x = jnp.asarray(x, dtype=float)
         self.y = jnp.asarray(y, dtype=float)
         self.noise_sigma = float(noise_sigma)
+        self.true_params = true_params
 
     def log_likelihood_function(self, instance, xp=np):
         return float(
@@ -498,8 +574,13 @@ def run_ep_fit(
     hill_priors_per_dataset,
     nlive=50,
     max_steps=5,
+    true_params_list=None,
 ):
     """Build the factor graph and call `factor_graph.optimise`.
+
+    `true_params_list` is optional and only used by the per-dataset
+    `HillVisualizer` to overlay the true Hill curve on each diagnostic
+    plot. Pass it for simulator runs; leave None for real data.
 
     Returns a dict with `ep_result`, the recovered means/sigmas for
     `hill_coef`, `coef_mean`, `coef_matrix`, plus the constructed
@@ -515,7 +596,14 @@ def run_ep_fit(
     model_list = build_per_dataset_models(hill_coef_priors)
 
     analysis_list = [
-        HillAnalysis(x=x_array[i], y=y_array[i], noise_sigma=noise_sigma)
+        HillAnalysis(
+            x=x_array[i],
+            y=y_array[i],
+            noise_sigma=noise_sigma,
+            true_params=(
+                true_params_list[i] if true_params_list is not None else None
+            ),
+        )
         for i in range(n_datasets)
     ]
 
