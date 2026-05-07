@@ -13,23 +13,23 @@ inference frameworks (one-by-one, EP, graphical, hierarchical).
 
 __Contents__
 
-**Model:** The Hill dose-response model that turns latent gene-expression
-vectors into observed cell-viability intensities.
-**Plotters:** Overview of the shared plotting tool used for visualisation.
-**Dataset Paths:** The output folder layout the rest of the workspace expects.
-**Real Data Preview:** Show one example real GDSC2 curve to anchor what the
-simulator is trying to reproduce.
-**Configuration:** Numerical sizes and noise levels of the simulated sample.
-**Ground-Truth Global Linear Model:** The mapping from latent vectors to Hill
-parameters, used as ground truth.
-**Concentration Grid:** The log-concentration rank axis matching real GDSC2
-preprocessing.
-**Per-Dataset Simulation:** Generate the per-cell-line Hill curves, add noise,
-write data + visualisation.
-**Sample-Level Outputs:** Save the global ground-truth arrays alongside the
-per-dataset folders.
-**Console Summary:** Print a table of every simulated cell line's parameters
-and log-likelihood.
+- **Model:** The Hill dose-response model that turns latent gene-expression
+  vectors into observed cell-viability intensities.
+- **Plotters:** Overview of the shared plotting tool used for visualisation.
+- **Dataset Paths:** The output folder layout the rest of the workspace expects.
+- **Real Data Preview:** Show one example real GDSC2 curve to anchor what the
+  simulator is trying to reproduce.
+- **Configuration:** Numerical sizes and noise levels of the simulated sample.
+- **Ground-Truth Global Linear Model:** The mapping from latent vectors to Hill
+  parameters, used as ground truth.
+- **Concentration Grid:** The log-concentration rank axis matching real GDSC2
+  preprocessing.
+- **Per-Dataset Simulation:** Generate the per-cell-line Hill curves, add noise,
+  write data + visualisation.
+- **Sample-Level Outputs:** Save the global ground-truth arrays alongside the
+  per-dataset folders.
+- **Console Summary:** Print a table of every simulated cell line's parameters
+  and log-likelihood.
 
 __Model__
 
