@@ -13,3 +13,6 @@ __pycache__/
 # Local raw data drops (mirrors concr convention)
 dataset/**/_sample/raw/
 *.pkl
+
+# AutoFit search output (large; only summaries committed via scripts/results/)
+output/
