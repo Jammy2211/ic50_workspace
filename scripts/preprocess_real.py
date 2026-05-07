@@ -59,15 +59,19 @@ def load_drug_subset(real_dir, drug_ids):
 
 
 def build_svd_latents(real_dir, n_latent):
-    """Load the cached 20-dim RNAseq SVD pickle and truncate to n_latent.
+    """Load the cached RNAseq SVD from the self-contained .npz.
 
-    The pickle (`data_rnaseq_svd_df.pkl`) was produced once by concr's
-    preprocessor from the 5 GB `rnaseq_all_20250117.csv`. Re-deriving
-    it from scratch in-process exhausts memory, so we reuse the cached
-    DataFrame indexed by COSMIC_ID.
+    The .npz holds the 1050 × 20 SVD projection of log2(TPM+1) RNAseq
+    over driver genes (computed once upstream and committed) along with
+    the matching `cosmic_ids` index. We rehydrate that into a DataFrame
+    and truncate to `n_latent` columns. This avoids re-running the SVD
+    (which would need the 5 GB `rnaseq_all_*.csv`) on every preprocess.
     """
-    print("Loading cached RNAseq SVD pickle...", flush=True)
-    svd_df = pd.read_pickle(real_dir / "data_rnaseq_svd_df.pkl")
+    print("Loading cached RNAseq SVD from .npz...", flush=True)
+    npz = np.load(real_dir / "data_rnaseq_svd_df.npz", allow_pickle=True)
+    svd_df = pd.DataFrame(
+        npz["data_rnaseq_svd_df"], index=npz["cosmic_ids"].astype(int)
+    )
     if svd_df.shape[1] >= n_latent:
         svd_df = svd_df.iloc[:, :n_latent]
     print(f"  SVD latents shape: {svd_df.shape}", flush=True)

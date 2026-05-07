@@ -192,7 +192,10 @@ def main(drug_ids):
     drug_info = pd.read_csv(real_dir / "screened_compounds_rel_8.5.csv")
     drug_names = dict(zip(drug_info["DRUG_ID"], drug_info["DRUG_NAME"]))
 
-    svd_df = pd.read_pickle(real_dir / "data_rnaseq_svd_df.pkl")
+    npz = np.load(real_dir / "data_rnaseq_svd_df.npz", allow_pickle=True)
+    svd_df = pd.DataFrame(
+        npz["data_rnaseq_svd_df"], index=npz["cosmic_ids"].astype(int)
+    )
     print(f"Loaded SVD latents: {svd_df.shape}", flush=True)
 
     gdsc = load_drug_subset(real_dir, drug_ids)

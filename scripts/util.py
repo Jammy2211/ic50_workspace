@@ -54,7 +54,8 @@ def hill_curve(x, log_ic50, n_log, base, xp=np):
     Parameters
     ----------
     x : array_like
-        Log-concentration grid (e.g. ``log(rank+1)``).
+        Log-concentration grid in `ln(µM)` (e.g. `np.log(CONC_µM)` for
+        real data, `np.linspace(-3.45, 3.45, 7)` for the simulator).
     log_ic50 : float
         Half-maximal log-concentration; the curve's inflection point.
     n_log : float
