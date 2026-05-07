@@ -1,0 +1,10 @@
+{
+    "domain": "cancer",
+    "noise_sigma": 9099.0,
+    "n_latent": 20,
+    "n_doses": 14,
+    "cosmic_id": 907169,
+    "drugset_id": 427,
+    "drug_id": 1073,
+    "simulated": false
+}

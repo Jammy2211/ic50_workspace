@@ -1,0 +1,5 @@
+# Files under scripts/ that PyAutoBuild's generate.py should copy as-is to
+# notebooks/ rather than converting to .ipynb. Use this for shared importable
+# modules (no docstring/cell structure) so notebooks can import them without a
+# package install.
+- util.py
