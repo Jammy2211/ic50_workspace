@@ -1,0 +1,38 @@
+#!/bin/bash -l
+
+#SBATCH -J ic50_graphical_sim_gpu
+#SBATCH --partition=gpu
+#SBATCH --gres=gpu:1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=32gb
+#SBATCH --time=08:00:00
+#SBATCH -o output/output.%A.out
+#SBATCH -e error/error.%A.err
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=james.w.nightingale@durham.ac.uk
+
+# -------------------------------
+# Environment
+#
+# Set PROJECT_PATH before submitting:
+#   export PROJECT_PATH=/path/to/your/project
+# -------------------------------
+source $PROJECT_PATH/activate.sh
+
+echo "=========================================="
+echo "Running: graphical_sim.py (GPU)"
+date
+nvidia-smi
+
+# -------------------------------
+# Run the graphical-model fit on simulated IC50 data.
+#
+# Fits all 5 sim datasets in a single Dynesty search over the full factor
+# graph (33 free params). JAX picks the allocated GPU automatically.
+# Asserts 3σ recovery of the global coef_mean unless PYAUTO_TEST_MODE is set.
+# -------------------------------
+python3 $PROJECT_PATH/scripts/graphical_sim.py
+
+echo "Finished graphical_sim.py"
+date
