@@ -362,6 +362,49 @@ class GlobalLinearAnalysis(af.Analysis):
         )
 
 
+class GraphicalLinearAnalysis(af.Analysis):
+    """Graphical-fit twin of `GlobalLinearAnalysis` (no EP message passing).
+
+    The log-likelihood is
+
+        log L = -0.5 * sum_i ‖ (latent_i @ coef_matrix + coef_mean - hill_coef_i)
+                              / regression_sigmas_i ‖²
+
+    where `hill_coef` is read directly from the sampled instance — it is a
+    **free** parameter in the graphical fit (shared via `build_model_linear`'s
+    Prior wiring with each per-dataset Hill model), not an EP-frozen
+    constant. The constraint scale `regression_sigmas` is fixed up-front
+    (the EP version derives equivalent sigmas from the local factors'
+    message posteriors each iteration, which has no analogue in a single
+    global search).
+    """
+
+    def __init__(self, latents, regression_sigmas):
+        # See HillAnalysis: use_jax=False because the JIT lives inside the
+        # likelihood, not at the AutoFit-outer level.
+        super().__init__(use_jax=False)
+        self.latents = jnp.asarray(latents, dtype=float)
+        n_datasets = int(self.latents.shape[0])
+        sigmas = jnp.asarray(regression_sigmas, dtype=float)
+        if sigmas.ndim == 1:
+            sigmas = jnp.tile(sigmas, (n_datasets, 1))
+        self.regression_sigmas = sigmas
+
+    def log_likelihood_function(self, instance, xp=np):
+        hill_coef = jnp.asarray(instance.hill_coef, dtype=float)
+        coef_matrix = jnp.asarray(instance.coef_matrix, dtype=float)
+        coef_mean = jnp.asarray(instance.coef_mean, dtype=float)
+        return float(
+            _global_log_likelihood_jit(
+                self.latents,
+                coef_matrix,
+                coef_mean,
+                hill_coef,
+                self.regression_sigmas,
+            )
+        )
+
+
 class FixedHillCoefEPFactor(af.EPAnalysisFactor):
     """Specialised EPAnalysisFactor for the global linear factor.
 
@@ -718,6 +761,169 @@ def run_ep_fit(
 
 
 # ---------------------------------------------------------------------------
+# Graphical-model run (single non-linear search over the full factor graph)
+# ---------------------------------------------------------------------------
+
+
+DEFAULT_REGRESSION_SIGMAS = (0.5, 0.5, 6000.0)
+
+
+def run_graphical_fit(
+    *,
+    name,
+    n_datasets,
+    n_latent,
+    x_array,
+    y_array,
+    latent_array,
+    noise_sigma,
+    coef_mean_priors,
+    coef_matrix_prior_sigmas,
+    hill_priors_per_dataset,
+    nlive=50,
+    regression_sigmas=DEFAULT_REGRESSION_SIGMAS,
+    true_params_list=None,
+):
+    """Build the factor graph and fit it in a single non-linear search.
+
+    The model wiring is identical to ``run_ep_fit``: the same
+    ``build_model_linear`` / ``build_per_dataset_models`` helpers wire
+    `model_linear.hill_coef[i, j]` to each per-dataset `hill[i].log_ic50`
+    / `.n_log` / `.base` via shared ``Prior`` instances. In a graphical
+    fit those shared priors resolve to a *single* free variable per
+    Hill parameter, so the search jointly samples
+    ``n_datasets × 3 + n_latent × 3 + 3`` parameters — every per-dataset
+    Hill coefficient, the global linear matrix, and the global linear
+    offset — in one parameter space.
+
+    The global linear factor is a Gaussian probabilistic constraint with
+    fixed ``regression_sigmas`` (default ``[0.5, 0.5, 6000.0]``, matching
+    ``coef_matrix_prior_sigmas`` from the EP sim run). The EP path
+    derives equivalent sigmas from each iteration's message posteriors;
+    a graphical fit has no such loop, so the scale is set up-front.
+
+    Returns the same schema as ``run_ep_fit`` (``hill_means``,
+    ``hill_sigmas``, ``coef_mean_means``, ``coef_mean_sigmas``,
+    ``coef_matrix_means``, ``coef_matrix_sigmas``, ``model_linear``,
+    ``hill_coef_priors``) plus the underlying ``result`` for callers
+    that want to introspect samples directly.
+    """
+    model_linear, hill_coef_priors = build_model_linear(
+        n_latent=n_latent,
+        n_datasets=n_datasets,
+        coef_mean_priors=coef_mean_priors,
+        coef_matrix_prior_sigmas=coef_matrix_prior_sigmas,
+        hill_priors_per_dataset=hill_priors_per_dataset,
+    )
+    model_list = build_per_dataset_models(hill_coef_priors)
+
+    analysis_list = [
+        HillAnalysis(
+            x=x_array[i],
+            y=y_array[i],
+            noise_sigma=noise_sigma,
+            true_params=(
+                true_params_list[i] if true_params_list is not None else None
+            ),
+        )
+        for i in range(n_datasets)
+    ]
+
+    analysis_global = GraphicalLinearAnalysis(
+        latents=np.asarray(latent_array, dtype=float),
+        regression_sigmas=np.asarray(regression_sigmas, dtype=float),
+    )
+
+    paths = af.DirectoryPaths(
+        path_prefix=Path(f"graphical_{name}"), name="graphical"
+    )
+
+    analysis_factor_list = [
+        af.AnalysisFactor(
+            prior_model=model,
+            analysis=analysis,
+            name=f"dataset_{i}",
+        )
+        for i, (model, analysis) in enumerate(zip(model_list, analysis_list))
+    ]
+    analysis_factor_global = af.AnalysisFactor(
+        prior_model=model_linear,
+        analysis=analysis_global,
+        name="global",
+    )
+
+    factor_graph = af.FactorGraphModel(
+        *analysis_factor_list, analysis_factor_global
+    )
+
+    search = af.DynestyStatic(
+        paths=paths, nlive=nlive, sample="rwalk", force_x1_cpu=True
+    )
+
+    print(
+        f"\nGlobal factor graph free parameter count: "
+        f"{factor_graph.global_prior_model.prior_count}"
+    )
+    print(
+        f"  (= n_datasets*3 + n_latent*3 + 3 = "
+        f"{n_datasets * 3} + {n_latent * 3} + 3 = "
+        f"{n_datasets * 3 + n_latent * 3 + 3})"
+    )
+    print(f"\nRunning graphical fit: nlive={nlive}, n_datasets={n_datasets}")
+
+    result = search.fit(
+        model=factor_graph.global_prior_model, analysis=factor_graph
+    )
+
+    samples = result.samples
+    median = samples.median_pdf()
+    upper = samples.values_at_upper_sigma(sigma=1.0)
+    lower = samples.values_at_lower_sigma(sigma=1.0)
+
+    hill_means = np.empty((n_datasets, 3))
+    hill_sigmas = np.empty((n_datasets, 3))
+    for i in range(n_datasets):
+        hill_i = median[i].hill
+        hill_u = upper[i].hill
+        hill_l = lower[i].hill
+        for j, attr in enumerate(HILL_PARAM_NAMES):
+            hill_means[i, j] = float(getattr(hill_i, attr))
+            hill_sigmas[i, j] = (
+                float(getattr(hill_u, attr)) - float(getattr(hill_l, attr))
+            ) / 2.0
+
+    global_median = median[n_datasets]
+    global_upper = upper[n_datasets]
+    global_lower = lower[n_datasets]
+
+    coef_mean_means = np.asarray(global_median.coef_mean, dtype=float).reshape(3)
+    coef_mean_sigmas = (
+        np.asarray(global_upper.coef_mean, dtype=float).reshape(3)
+        - np.asarray(global_lower.coef_mean, dtype=float).reshape(3)
+    ) / 2.0
+
+    coef_matrix_means = np.asarray(
+        global_median.coef_matrix, dtype=float
+    ).reshape(n_latent, 3)
+    coef_matrix_sigmas = (
+        np.asarray(global_upper.coef_matrix, dtype=float).reshape(n_latent, 3)
+        - np.asarray(global_lower.coef_matrix, dtype=float).reshape(n_latent, 3)
+    ) / 2.0
+
+    return dict(
+        result=result,
+        hill_means=hill_means,
+        hill_sigmas=hill_sigmas,
+        coef_mean_means=coef_mean_means,
+        coef_mean_sigmas=coef_mean_sigmas,
+        coef_matrix_means=coef_matrix_means,
+        coef_matrix_sigmas=coef_matrix_sigmas,
+        model_linear=model_linear,
+        hill_coef_priors=hill_coef_priors,
+    )
+
+
+# ---------------------------------------------------------------------------
 # Summary writers
 # ---------------------------------------------------------------------------
 
@@ -741,15 +947,17 @@ def write_ep_summary(
     output_dir,
     truth=None,
     test_mode=False,
+    method="ep",
 ):
-    """Write `ep_<name>_summary.txt` and `ep_<name>_summary.json`.
+    """Write `<method>_<name>_summary.txt` and `<method>_<name>_summary.json`.
 
     Parameters
     ----------
     recovered : dict
         Output of ``run_ep_fit`` (`hill_means`, `hill_sigmas`,
         `coef_mean_means`, `coef_mean_sigmas`, `coef_matrix_means`,
-        `coef_matrix_sigmas`).
+        `coef_matrix_sigmas`). The graphical-fit path returns the same
+        schema so the same writer covers both.
     truth : dict, optional
         For sim runs: ``coef_mean_true``, ``coef_matrix_true``,
         ``hill_params_true``. Triggers per-element σ-distance columns
@@ -757,6 +965,12 @@ def write_ep_summary(
     test_mode : bool
         If True, marks the summary as a test-mode (non-converged) run
         and skips raising on failure.
+    method : str, optional
+        Either ``"ep"`` (default) or ``"graphical"``. Controls the
+        output filenames (`<method>_<name>_summary.{txt,json}`),
+        the summary header, and the JSON ``"method"`` field. The
+        ``max_steps`` value is irrelevant for the graphical fit but is
+        still recorded for parity with the EP summaries.
 
     Returns
     -------
@@ -778,9 +992,11 @@ def write_ep_summary(
     failures_coef_mean = []
     failures_coef_matrix = []
 
+    method_title = "EP" if method == "ep" else method.capitalize()
+
     lines = []
     lines.append("=" * 100)
-    lines.append(f"IC50 EP Summary ({name})")
+    lines.append(f"IC50 {method_title} Summary ({name})")
     if test_mode:
         lines.append("[PYAUTO_TEST_MODE active — sampler short-circuited; values are not converged.]")
     lines.append("=" * 100)
@@ -847,11 +1063,11 @@ def write_ep_summary(
     if truth is not None:
         lines.append(
             f"{'dataset':<10}  {'param':<10}  {'true':>11}  "
-            f"{'EP mean':>11}  {'EP σ':>11}  {'σ-dist':>7}  flag"
+            f"{'mean':>11}  {'σ':>11}  {'σ-dist':>7}  flag"
         )
     else:
         lines.append(
-            f"{'dataset':<10}  {'param':<10}  {'EP mean':>11}  {'EP σ':>11}"
+            f"{'dataset':<10}  {'param':<10}  {'mean':>11}  {'σ':>11}"
         )
     lines.append("-" * 100)
     for i in range(n_datasets):
@@ -879,11 +1095,11 @@ def write_ep_summary(
     lines.append("--- Global coef_mean ---")
     if truth is not None:
         lines.append(
-            f"{'channel':<12}  {'true':>11}  {'EP mean':>11}  "
-            f"{'EP σ':>11}  {'σ-dist':>7}  flag"
+            f"{'channel':<12}  {'true':>11}  {'mean':>11}  "
+            f"{'σ':>11}  {'σ-dist':>7}  flag"
         )
     else:
-        lines.append(f"{'channel':<12}  {'EP mean':>11}  {'EP σ':>11}")
+        lines.append(f"{'channel':<12}  {'mean':>11}  {'σ':>11}")
     lines.append("-" * 100)
     for j, label in enumerate(HILL_PARAM_NAMES):
         rec = coef_mean_means[j]
@@ -907,11 +1123,11 @@ def write_ep_summary(
     if truth is not None:
         lines.append(
             f"{'latent':<7}  {'param':<10}  {'true':>11}  "
-            f"{'EP mean':>11}  {'EP σ':>11}  {'σ-dist':>7}  flag"
+            f"{'mean':>11}  {'σ':>11}  {'σ-dist':>7}  flag"
         )
     else:
         lines.append(
-            f"{'latent':<7}  {'param':<10}  {'EP mean':>11}  {'EP σ':>11}"
+            f"{'latent':<7}  {'param':<10}  {'mean':>11}  {'σ':>11}"
         )
     lines.append("-" * 100)
     for k in range(n_latent):
@@ -947,28 +1163,28 @@ def write_ep_summary(
             for w in failures_hill:
                 lines.append(
                     f"hill_coef    {w[0]}.{w[1]}: true={w[2]:.4g} "
-                    f"EP={w[3]:.4g} σ-dist={w[5]:.2f}"
+                    f"fit={w[3]:.4g} σ-dist={w[5]:.2f}"
                 )
             for f in failures_coef_mean:
                 lines.append(
-                    f"coef_mean    {f[0]}: true={f[1]:.4g} EP={f[2]:.4g} "
+                    f"coef_mean    {f[0]}: true={f[1]:.4g} fit={f[2]:.4g} "
                     f"σ={f[3]:.4g} σ-dist={f[4]:.2f}"
                 )
             for c in failures_coef_matrix:
                 lines.append(
                     f"coef_matrix  latent_{c[0]}.{c[1]}: true={c[2]:.4g} "
-                    f"EP={c[3]:.4g} σ={c[4]:.4g} σ-dist={c[5]:.2f}"
+                    f"fit={c[3]:.4g} σ={c[4]:.4g} σ-dist={c[5]:.2f}"
                 )
 
     summary = "\n".join(lines) + "\n"
 
-    txt_path = output_dir / f"ep_{name}_summary.txt"
+    txt_path = output_dir / f"{method}_{name}_summary.txt"
     with open(txt_path, "w") as f:
         f.write(summary)
     print(f"\nSummary written to: {txt_path}")
 
     sidecar = {
-        "method": "ep",
+        "method": method,
         "name": name,
         "n_datasets": n_datasets,
         "n_latent": n_latent,
@@ -988,13 +1204,47 @@ def write_ep_summary(
         sidecar["coef_matrix_true"] = truth["coef_matrix_true"].tolist()
         sidecar["hill_params_true"] = truth["hill_params_true"].tolist()
 
-    json_path = output_dir / f"ep_{name}_summary.json"
+    json_path = output_dir / f"{method}_{name}_summary.json"
     with open(json_path, "w") as f:
         json.dump(sidecar, f, indent=2)
     print(f"Sidecar JSON written to: {json_path}")
 
     failures = (failures_hill, failures_coef_mean, failures_coef_matrix)
     return txt_path, json_path, failures
+
+
+def write_graphical_summary(
+    *,
+    name,
+    n_datasets,
+    n_latent,
+    nlive,
+    wall_time_s,
+    recovered,
+    output_dir,
+    truth=None,
+    test_mode=False,
+):
+    """Graphical-fit shim around ``write_ep_summary``.
+
+    Mirrors the EP writer's interface but with no ``max_steps`` (the
+    graphical fit is a single non-linear search, not an EP loop) and
+    pins ``method="graphical"`` so the output files become
+    ``graphical_<name>_summary.{txt,json}``.
+    """
+    return write_ep_summary(
+        name=name,
+        n_datasets=n_datasets,
+        n_latent=n_latent,
+        nlive=nlive,
+        max_steps=0,
+        wall_time_s=wall_time_s,
+        recovered=recovered,
+        output_dir=output_dir,
+        truth=truth,
+        test_mode=test_mode,
+        method="graphical",
+    )
 
 
 def is_test_mode():
