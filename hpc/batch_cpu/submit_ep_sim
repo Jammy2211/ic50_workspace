@@ -1,0 +1,48 @@
+#!/bin/bash -l
+
+#SBATCH -J ic50_ep_sim_cpu
+#SBATCH -n 1
+#SBATCH --cpus-per-task=4
+#SBATCH -o output/output.%A.out
+#SBATCH -e error/error.%A.err
+#SBATCH --partition=cpu
+#SBATCH -t 04:00:00
+#SBATCH --mem=8gb
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=james.w.nightingale@durham.ac.uk
+
+# -------------------------------
+# Environment
+#
+# Set PROJECT_PATH before submitting:
+#   export PROJECT_PATH=/path/to/your/project
+# -------------------------------
+source $PROJECT_PATH/activate.sh
+
+# Force JAX to use CPU only (no GPU)
+export JAX_PLATFORM_NAME=cpu
+export JAX_PLATFORMS=cpu
+
+# Pin thread counts to the allocated CPUs
+THREADS=$SLURM_CPUS_PER_TASK
+export OPENBLAS_NUM_THREADS=$THREADS
+export MKL_NUM_THREADS=$THREADS
+export OMP_NUM_THREADS=$THREADS
+export VECLIB_MAXIMUM_THREADS=$THREADS
+export NUMEXPR_NUM_THREADS=$THREADS
+export NPROC=$THREADS
+
+echo "=========================================="
+echo "Running: ep_sim.py (CPU)"
+date
+
+# -------------------------------
+# Run the EP fit on simulated IC50 data.
+#
+# Fits all 5 sim datasets via expectation propagation. Asserts 3σ recovery
+# of the global coef_mean unless PYAUTO_TEST_MODE is set.
+# -------------------------------
+python3 $PROJECT_PATH/scripts/ep_sim.py
+
+echo "Finished ep_sim.py"
+date

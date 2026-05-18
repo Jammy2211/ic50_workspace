@@ -1,0 +1,50 @@
+#!/bin/bash -l
+
+#SBATCH -J ic50_ep_real_gpu
+#SBATCH --partition=gpu
+#SBATCH --gres=gpu:1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=32gb
+#SBATCH --time=08:00:00
+#SBATCH --array=0-1
+#SBATCH -o output/output.%A_%a.out
+#SBATCH -e error/error.%A_%a.err
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=james.w.nightingale@durham.ac.uk
+
+# -------------------------------
+# Environment
+#
+# Set PROJECT_PATH before submitting:
+#   export PROJECT_PATH=/path/to/your/project
+# -------------------------------
+source $PROJECT_PATH/activate.sh
+
+# -------------------------------
+# Drug list
+#
+# Each entry is a GDSC2 drug_id with a dataset/real/drug_<id>/ directory.
+# Update --array above to match the number of drugs (0 to N-1).
+# -------------------------------
+drugs=(
+1003
+1073
+)
+
+INDEX=$SLURM_ARRAY_TASK_ID
+drug="${drugs[$INDEX]}"
+
+echo "=========================================="
+echo "Array job index: $INDEX"
+echo "Drug: $drug (GPU)"
+date
+nvidia-smi
+
+# -------------------------------
+# Run the EP fit on real GDSC2 data for one drug.
+# -------------------------------
+python3 $PROJECT_PATH/scripts/ep_real.py --drug_id=$drug
+
+echo "Finished drug: $drug"
+date
