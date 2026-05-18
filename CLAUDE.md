@@ -20,8 +20,21 @@ ic50_workspace/
     ├── util.py                      # ALL Hill math + plotting (single source of truth)
     ├── simulator.py                 # autolens-style step-by-step simulator
     ├── ep_{sim,real}.py             # expectation-propagation fits
-    └── graphical_{sim,real}.py      # joint-search graphical-model fits
+    ├── graphical_{sim,real}.py      # joint-search graphical-model fits
+    └── profile_ep_sim.py            # category-level timing breakdown of ep_sim
 ```
+
+## Profiling the EP runtime
+
+`scripts/profile_ep_sim.py` re-runs `ep_sim.py` with monkey-patch
+instrumentation that splits the wall time into Hill-fit likelihood evals,
+global-fit likelihood evals, `set_model_approx` (the prior-freeze hook),
+Dynesty wrapper overhead (everything inside `search.fit` that isn't a
+likelihood eval), and EP-loop orchestration. Writes a markdown +  JSON
+report to `scripts/results/ep_sim_profile.{md,json}` plus a scaling
+projection to 100/1000/10000 datasets. Clears the cached AutoFit output
+at startup so a previous `PYAUTO_TEST_MODE` run doesn't short-circuit
+the proper run (see the AutoFit cache-resume note in CLAUDE memory).
 
 ## Running the simulator
 

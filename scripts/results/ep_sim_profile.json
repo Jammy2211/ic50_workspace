@@ -1,0 +1,109 @@
+{
+  "config": {
+    "n_datasets": 5,
+    "n_latent": 5,
+    "nlive": 50,
+    "max_steps": 3
+  },
+  "phases": {
+    "setup_s": 0.10088390000601066,
+    "optimise_s": 65.7596282999948,
+    "extract_s": 0.009645500002079643,
+    "total_s": 65.87015770000289
+  },
+  "optimise_breakdown": {
+    "local_ll_time_s": 3.34949959936057,
+    "local_ll_calls": 21904,
+    "global_ll_time_s": 2.7437043005265878,
+    "global_ll_calls": 4935,
+    "set_model_approx_time_s": 0.0021610999974654987,
+    "set_model_approx_calls": 2,
+    "dynesty_fit_time_s": 62.10606610000832,
+    "dynesty_fit_calls": 12,
+    "dynesty_fit_calls_max_steps_worst_case": 18,
+    "iters_run_observed": 2.0,
+    "dynesty_wrapper_time_s": 56.01286220012116,
+    "ep_orchestration_time_s": 3.651401099989016,
+    "unaccounted_residual_s": 0.0
+  },
+  "per_hill_factor": [
+    {
+      "name": "dataset_0",
+      "calls": 4133,
+      "time_s": 0.6808385997501318
+    },
+    {
+      "name": "dataset_1",
+      "calls": 4461,
+      "time_s": 0.7437694999171072
+    },
+    {
+      "name": "dataset_2",
+      "calls": 4465,
+      "time_s": 0.4508147999003995
+    },
+    {
+      "name": "dataset_3",
+      "calls": 4530,
+      "time_s": 0.7411679994984297
+    },
+    {
+      "name": "dataset_4",
+      "calls": 4315,
+      "time_s": 0.7329087002945016
+    }
+  ],
+  "scaling_model": {
+    "form": "total(N, M) = a + M*[(N+1)*dynesty_wrapper_per_fit + N*local_ll_per_dataset_per_iter + global_ll_per_iter + sma_per_iter + ep_orchestration_per_iter]",
+    "a_s": 0.1105294000080903,
+    "dynesty_wrapper_per_fit_s": 4.6677385166767635,
+    "local_ll_per_dataset_per_iter_s": 0.334949959936057,
+    "global_ll_per_iter_s": 1.3718521502632939,
+    "sma_per_iter_s": 0.0010805499987327494,
+    "ep_orchestration_per_iter_s": 1.825700549994508,
+    "projections_s": {
+      "5": 65.87015770000289,
+      "100": 1016.3809682564388,
+      "1000": 10021.220226159516,
+      "10000": 100069.61280519029
+    },
+    "projection_buckets_s": {
+      "5": {
+        "setup_extract": 0.1105294000080903,
+        "dynesty_wrapper": 56.01286220012116,
+        "local_ll": 3.34949959936057,
+        "global_ll": 2.7437043005265878,
+        "set_model_approx": 0.0021610999974654987,
+        "ep_orchestration": 3.651401099989016,
+        "total": 65.87015770000289
+      },
+      "100": {
+        "setup_extract": 0.1105294000080903,
+        "dynesty_wrapper": 942.8831803687062,
+        "local_ll": 66.9899919872114,
+        "global_ll": 2.7437043005265878,
+        "set_model_approx": 0.0021610999974654987,
+        "ep_orchestration": 3.651401099989016,
+        "total": 1016.3809682564388
+      },
+      "1000": {
+        "setup_extract": 0.1105294000080903,
+        "dynesty_wrapper": 9344.81251038688,
+        "local_ll": 669.899919872114,
+        "global_ll": 2.7437043005265878,
+        "set_model_approx": 0.0021610999974654987,
+        "ep_orchestration": 3.651401099989016,
+        "total": 10021.220226159516
+      },
+      "10000": {
+        "setup_extract": 0.1105294000080903,
+        "dynesty_wrapper": 93364.10581056862,
+        "local_ll": 6698.99919872114,
+        "global_ll": 2.7437043005265878,
+        "set_model_approx": 0.0021610999974654987,
+        "ep_orchestration": 3.651401099989016,
+        "total": 100069.61280519029
+      }
+    }
+  }
+}
