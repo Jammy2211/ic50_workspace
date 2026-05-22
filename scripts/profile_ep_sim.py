@@ -38,17 +38,9 @@ Outputs
 
   scripts/results/ep_sim_profile.md   — human-readable report
   scripts/results/ep_sim_profile.json — machine-readable sidecar
-
-Cache warning
--------------
-
-AutoFit's search-resume short-circuits proper runs when a previous
-test-mode result lives at the same model-hash output dir. This script
-deletes `output/ep_sim/` at startup so we always get a real run.
 """
 
 import json
-import shutil
 import sys
 import time
 from collections import defaultdict
@@ -144,14 +136,6 @@ def _install_instrumentation():
 def profiled_run():
     workspace_root = here.parent
     sim_path = workspace_root / "dataset" / "ic50_sim"
-
-    # Clear AutoFit's checkpoint to avoid short-circuiting a proper run with a
-    # previous test-mode cache. See feedback_autofit_cache_resume_pyauto_test_mode
-    # in memory for the full story.
-    cache_dir = workspace_root / "output" / f"ep_{NAME}"
-    if cache_dir.exists():
-        print(f"Removing cached AutoFit output: {cache_dir}")
-        shutil.rmtree(cache_dir)
 
     loaded = load_dataset_list(sim_path, n_datasets=N_DATASETS, want_truth=True)
     n_latent = loaded["n_latent"]

@@ -32,9 +32,7 @@ global-fit likelihood evals, `set_model_approx` (the prior-freeze hook),
 Dynesty wrapper overhead (everything inside `search.fit` that isn't a
 likelihood eval), and EP-loop orchestration. Writes a markdown +  JSON
 report to `scripts/results/ep_sim_profile.{md,json}` plus a scaling
-projection to 100/1000/10000 datasets. Clears the cached AutoFit output
-at startup so a previous `PYAUTO_TEST_MODE` run doesn't short-circuit
-the proper run (see the AutoFit cache-resume note in CLAUDE memory).
+projection to 100/1000/10000 datasets.
 
 ## Running the simulator
 
