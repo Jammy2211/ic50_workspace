@@ -2,3 +2,9 @@ subhalo
 sync.conf
 sync_jump.conf
 !.gitignore
+
+# SLURM stdout/stderr, pulled back by hpc/sync for inspection but not committed
+batch_cpu/output/
+batch_cpu/error/
+batch_gpu/output/
+batch_gpu/error/
