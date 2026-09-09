@@ -19,6 +19,10 @@
 # Set PROJECT_PATH before submitting:
 #   export PROJECT_PATH=/path/to/your/project
 # -------------------------------
+# JAX_ENABLE_X64 is ambient interactively but NOT inherited by sbatch; without it
+# float64 silently degrades to float32.
+export JAX_ENABLE_X64=True
+
 source $PROJECT_PATH/activate.sh
 
 # -------------------------------
