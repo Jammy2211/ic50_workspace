@@ -37,7 +37,7 @@ nvidia-smi
 # allocated GPU automatically. Asserts 3σ recovery of the global
 # coef_mean unless PYAUTO_TEST_MODE is set.
 # -------------------------------
-python3 $PROJECT_PATH/scripts/ep_sim.py
+python3 $PROJECT_PATH/scripts/ep_sim.py --nlive 150 --max_steps 12
 
 echo "Finished ep_sim.py"
 date

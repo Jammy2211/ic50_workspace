@@ -45,6 +45,7 @@ assertion is **skipped** (because the sampler hasn't converged). Unset
 the env var for the proper run that exercises the assertion.
 """
 
+import argparse
 import sys
 import time
 from pathlib import Path
@@ -69,12 +70,28 @@ from util import (
 )
 
 NAME = "sim"
-N_DATASETS = 5
-NLIVE = 50
+# ---------------------------------------------------------------------------
+# Run settings. Defaults reproduce the historical configuration; the RAL submit
+# scripts override them so a change of sampling effort never needs a code edit.
+# ---------------------------------------------------------------------------
+_parser = argparse.ArgumentParser(description=__doc__.split("\n")[1] if __doc__ else None)
+_parser.add_argument(
+    "--n_datasets", type=int, default=5,
+    help="Number of simulated datasets to fit (default: %(default)s).",
+)
+_parser.add_argument(
+    "--nlive", type=int, default=50,
+    help="DynestyStatic live points per factor search (default: %(default)s).",
+)
+_args = _parser.parse_args()
+
+N_DATASETS = _args.n_datasets
+NLIVE = _args.nlive
 
 workspace_root = here.parent
 sim_path = workspace_root / "dataset" / "ic50_sim"
-results_dir = here / "results"
+results_dir = workspace_root / "results"
+results_dir.mkdir(parents=True, exist_ok=True)
 plot_dir = sim_path / "graphical_results"
 plot_dir.mkdir(parents=True, exist_ok=True)
 

@@ -6,7 +6,7 @@
 #SBATCH -o output/output.%A.out
 #SBATCH -e error/error.%A.err
 #SBATCH --partition=ral
-#SBATCH -t 04:00:00
+#SBATCH -t 12:00:00
 #SBATCH --mem=8gb
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=james.w.nightingale@durham.ac.uk
@@ -48,7 +48,7 @@ date
 # graph (33 free params). Asserts 3σ recovery of the global coef_mean
 # unless PYAUTO_TEST_MODE is set.
 # -------------------------------
-python3 $PROJECT_PATH/scripts/graphical_sim.py
+python3 $PROJECT_PATH/scripts/graphical_sim.py --nlive 150
 
 echo "Finished graphical_sim.py"
 date

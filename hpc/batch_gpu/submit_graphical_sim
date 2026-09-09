@@ -37,7 +37,7 @@ nvidia-smi
 # graph (33 free params). JAX picks the allocated GPU automatically.
 # Asserts 3σ recovery of the global coef_mean unless PYAUTO_TEST_MODE is set.
 # -------------------------------
-python3 $PROJECT_PATH/scripts/graphical_sim.py
+python3 $PROJECT_PATH/scripts/graphical_sim.py --nlive 150
 
 echo "Finished graphical_sim.py"
 date
