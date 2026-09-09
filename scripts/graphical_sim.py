@@ -69,7 +69,6 @@ from util import (
     write_graphical_summary,
 )
 
-NAME = "sim"
 # ---------------------------------------------------------------------------
 # Run settings. Defaults reproduce the historical configuration; the RAL submit
 # scripts override them so a change of sampling effort never needs a code edit.
@@ -83,13 +82,27 @@ _parser.add_argument(
     "--nlive", type=int, default=50,
     help="DynestyStatic live points per factor search (default: %(default)s).",
 )
+_parser.add_argument(
+    "--sample", default="ic50_sim",
+    help="Dataset sample folder under dataset/ (default: %(default)s). A scale "
+         "ladder points successive rungs at larger samples.",
+)
+_parser.add_argument(
+    "--name", default=None,
+    help="Run name used for results/<method>_<name>_summary.json. Defaults to "
+         "'sim' for the base sample, else '<sample>_n<n_datasets>' so ladder "
+         "rungs do not overwrite one another.",
+)
 _args = _parser.parse_args()
 
 N_DATASETS = _args.n_datasets
+SAMPLE = _args.sample
+NAME = _args.name or ("sim" if SAMPLE == "ic50_sim" and N_DATASETS == 5
+                      else f"{SAMPLE.replace('ic50_', '')}_n{N_DATASETS}")
 NLIVE = _args.nlive
 
 workspace_root = here.parent
-sim_path = workspace_root / "dataset" / "ic50_sim"
+sim_path = workspace_root / "dataset" / SAMPLE
 results_dir = workspace_root / "results"
 results_dir.mkdir(parents=True, exist_ok=True)
 plot_dir = sim_path / "graphical_results"

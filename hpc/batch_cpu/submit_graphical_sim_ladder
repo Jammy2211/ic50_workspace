@@ -1,0 +1,62 @@
+#!/bin/bash -l
+
+#SBATCH -J ic50_graphical_ladder_cpu
+#SBATCH -n 1
+#SBATCH --cpus-per-task=4
+#SBATCH -o output/output.%A.out
+#SBATCH -e error/error.%A.err
+#SBATCH --partition=ral
+#SBATCH -t 24:00:00
+#SBATCH --mem=16gb
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=james.w.nightingale@durham.ac.uk
+
+# ---------------------------------------------------------------------------
+# Scale ladder for the graphical arm, graphical-ep campaign phase 4.
+#
+# The campaign witness asks for "EP running at the largest N reached with
+# per-rung timings committed". Each rung writes its own sidecar as soon as it
+# finishes, and the rungs run ascending, so a walltime kill still leaves every
+# completed rung on disk rather than losing the lot.
+#
+# All rungs read the same 50-dataset sample and take a prefix of it, so rung
+# N=5 is a strict subset of N=50 and the rungs are directly comparable.
+# ---------------------------------------------------------------------------
+
+export JAX_ENABLE_X64=True
+export PYAUTO_HPC_BASE=${PYAUTO_HPC_BASE:-/mnt/ral/jnightin/PyAuto}
+
+source $PROJECT_PATH/activate.sh
+
+export JAX_PLATFORM_NAME=cpu
+export JAX_PLATFORMS=cpu
+
+THREADS=$SLURM_CPUS_PER_TASK
+export OPENBLAS_NUM_THREADS=$THREADS
+export MKL_NUM_THREADS=$THREADS
+export OMP_NUM_THREADS=$THREADS
+export VECLIB_MAXIMUM_THREADS=$THREADS
+export NUMEXPR_NUM_THREADS=$THREADS
+export NPROC=$THREADS
+
+SAMPLE=ic50_sim_n50
+RUNGS="5 10 25 50"
+
+echo "=========================================="
+echo "graphical scale ladder — sample $SAMPLE, rungs: $RUNGS"
+date
+
+for N in $RUNGS; do
+    echo ""
+    echo "------ rung N=$N ------"
+    date
+    python3 $PROJECT_PATH/scripts/graphical_sim.py \
+        --sample $SAMPLE --n_datasets $N --name ladder_n$N \
+        --nlive 150  || echo "RUNG N=$N FAILED (continuing to next rung)"
+    echo "------ rung N=$N done ------"
+    date
+done
+
+echo ""
+echo "Finished graphical ladder"
+date

@@ -58,6 +58,7 @@ All plotting is delegated to `util.plot_dataset` so simulated and real data
 are rendered identically. See `scripts/util.py` for the full API.
 """
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -90,7 +91,19 @@ name. It defines the folder the dataset is output to on disk:
  - Ground-truth global arrays go to `dataset/ic50_sim/_sample/`
    (the linear map, latent matrix, hill-parameter matrix, and a JSON summary).
 """
-dataset_name = "ic50_sim"
+_parser = argparse.ArgumentParser(description="Simulate IC50 dose-response datasets.")
+_parser.add_argument(
+    "--n_datasets", type=int, default=5,
+    help="Number of datasets to simulate (default: %(default)s).",
+)
+_parser.add_argument(
+    "--dataset_name", default="ic50_sim",
+    help="Output folder under dataset/ (default: %(default)s). Use a distinct "
+         "name for a larger sample so the base 5-dataset sample is preserved.",
+)
+_sim_args = _parser.parse_args()
+
+dataset_name = _sim_args.dataset_name
 
 workspace_root = here.parent
 dataset_path = workspace_root / "dataset" / dataset_name
@@ -126,7 +139,7 @@ plot_dataset(
         f"Real GDSC2 drug 1003 (Camptothecin) dataset_0 "
         f"(n_doses={real_info['n_doses']}, cosmic_id={real_info['cosmic_id']})"
     ),
-    output_path=workspace_root / "dataset" / "ic50_sim" / "real_data_preview.png",
+    output_path=dataset_path / "real_data_preview.png",
 )
 
 """
@@ -145,7 +158,7 @@ Numerical sizes and noise levels of the simulated sample.
    Mirrors concr's 9099; plate-and-instrument-specific.
  - `RANDOM_SEED`: deterministic seed so the 5-dataset sample is reproducible.
 """
-N_DATASETS = 5
+N_DATASETS = _sim_args.n_datasets
 N_LATENT = 5
 N_DOSES = 7
 NOISE_SIGMA = 9099.0
