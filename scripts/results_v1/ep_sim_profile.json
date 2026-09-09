@@ -1,0 +1,109 @@
+{
+  "config": {
+    "n_datasets": 5,
+    "n_latent": 5,
+    "nlive": 50,
+    "max_steps": 3
+  },
+  "phases": {
+    "setup_s": 0.11009500000000116,
+    "optimise_s": 66.37122789999921,
+    "extract_s": 0.020678799999586772,
+    "total_s": 66.5020016999988
+  },
+  "optimise_breakdown": {
+    "local_ll_time_s": 1.6695229000324616,
+    "local_ll_calls": 4437,
+    "global_ll_time_s": 0.0,
+    "global_ll_calls": 0,
+    "set_model_approx_time_s": 0.09955859999899985,
+    "set_model_approx_calls": 2,
+    "dynesty_fit_time_s": 47.478078299995104,
+    "dynesty_fit_calls": 17,
+    "dynesty_fit_calls_max_steps_worst_case": 18,
+    "iters_run_observed": 2.8333333333333335,
+    "dynesty_wrapper_time_s": 45.80855539996264,
+    "ep_orchestration_time_s": 18.793591000005108,
+    "unaccounted_residual_s": 0.0
+  },
+  "per_hill_factor": [
+    {
+      "name": "dataset_0",
+      "calls": 0,
+      "time_s": 0.0
+    },
+    {
+      "name": "dataset_1",
+      "calls": 0,
+      "time_s": 0.0
+    },
+    {
+      "name": "dataset_2",
+      "calls": 0,
+      "time_s": 0.0
+    },
+    {
+      "name": "dataset_3",
+      "calls": 2358,
+      "time_s": 1.1087813999874925
+    },
+    {
+      "name": "dataset_4",
+      "calls": 2079,
+      "time_s": 0.5607415000449691
+    }
+  ],
+  "scaling_model": {
+    "form": "total(N, M) = a + M*[(N+1)*dynesty_wrapper_per_fit + N*local_ll_per_dataset_per_iter + global_ll_per_iter + sma_per_iter + ep_orchestration_per_iter]",
+    "a_s": 0.13077379999958794,
+    "dynesty_wrapper_per_fit_s": 2.6946209058801553,
+    "local_ll_per_dataset_per_iter_s": 0.11784867529640905,
+    "global_ll_per_iter_s": 0.0,
+    "sma_per_iter_s": 0.03513832941141171,
+    "ep_orchestration_per_iter_s": 6.633032117648861,
+    "projections_s": {
+      "5": 66.5020016999988,
+      "100": 823.5250639666908,
+      "1000": 7995.322495966931,
+      "10000": 79713.29681596933
+    },
+    "projection_buckets_s": {
+      "5": {
+        "setup_extract": 0.13077379999958794,
+        "dynesty_wrapper": 45.80855539996264,
+        "local_ll": 1.6695229000324616,
+        "global_ll": 0.0,
+        "set_model_approx": 0.09955859999899985,
+        "ep_orchestration": 18.793591000005108,
+        "total": 66.5020016999988
+      },
+      "100": {
+        "setup_extract": 0.13077379999958794,
+        "dynesty_wrapper": 771.1106825660379,
+        "local_ll": 33.39045800064923,
+        "global_ll": 0.0,
+        "set_model_approx": 0.09955859999899985,
+        "ep_orchestration": 18.793591000005108,
+        "total": 823.5250639666908
+      },
+      "1000": {
+        "setup_extract": 0.13077379999958794,
+        "dynesty_wrapper": 7642.3939925604345,
+        "local_ll": 333.9045800064923,
+        "global_ll": 0.0,
+        "set_model_approx": 0.09955859999899985,
+        "ep_orchestration": 18.793591000005108,
+        "total": 7995.322495966931
+      },
+      "10000": {
+        "setup_extract": 0.13077379999958794,
+        "dynesty_wrapper": 76355.2270925044,
+        "local_ll": 3339.0458000649232,
+        "global_ll": 0.0,
+        "set_model_approx": 0.09955859999899985,
+        "ep_orchestration": 18.793591000005108,
+        "total": 79713.29681596933
+      }
+    }
+  }
+}

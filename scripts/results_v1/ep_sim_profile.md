@@ -2,29 +2,29 @@
 
 Run config: n_datasets=5, n_latent=5, nlive=50, max_steps=3
 
-**Total wall time: 65.87 s** (1.10 min)
+**Total wall time: 66.50 s** (1.11 min)
 
 ## Top-level breakdown
 
 | Phase | Time (s) | % of total |
 |---|---:|---:|
-| Setup (build model + analyses + factor graph) | 0.101 | 0.2 |
-| Optimise (`factor_graph.optimise`) | 65.760 | 99.8 |
-| Extract (walk ep_result → arrays) | 0.010 | 0.0 |
+| Setup (build model + analyses + factor graph) | 0.110 | 0.2 |
+| Optimise (`factor_graph.optimise`) | 66.371 | 99.8 |
+| Extract (walk ep_result → arrays) | 0.021 | 0.0 |
 
 ## Optimise-phase breakdown
 
 | Category | Time (s) | % of optimise |
 |---|---:|---:|
-| (1) Local Hill fits — `HillAnalysis.log_likelihood_function` (5 factors × 3 iter) | 3.349 | 5.1 |
-| (2) Global fit — `GlobalLinearAnalysis.log_likelihood_function` | 2.744 | 4.2 |
-| (3a) `set_model_approx` prior-freeze hook | 0.002 | 0.0 |
-| (3b) Dynesty wrapper overhead (search.fit minus LL evals) | 56.013 | 85.2 |
-| (3c) EP-loop orchestration (optimise minus search.fit minus set_model_approx) | 3.651 | 5.6 |
+| (1) Local Hill fits — `HillAnalysis.log_likelihood_function` (5 factors × 3 iter) | 1.670 | 2.5 |
+| (2) Global fit — `GlobalLinearAnalysis.log_likelihood_function` | 0.000 | 0.0 |
+| (3a) `set_model_approx` prior-freeze hook | 0.100 | 0.2 |
+| (3b) Dynesty wrapper overhead (search.fit minus LL evals) | 45.809 | 69.0 |
+| (3c) EP-loop orchestration (optimise minus search.fit minus set_model_approx) | 18.794 | 28.3 |
 
-Total Dynesty fits: 12 (worst case (N+1)×max_steps = 18; observed implies ~2.0 EP iterations ran before convergence)
-Total search.fit wall time: 62.106 s — of which 9.8% was actual likelihood evaluation.
-Per-Dynesty-fit wrapper overhead: 4.668 s/fit
+Total Dynesty fits: 17 (worst case (N+1)×max_steps = 18; observed implies ~2.8 EP iterations ran before convergence)
+Total search.fit wall time: 47.478 s — of which 3.5% was actual likelihood evaluation.
+Per-Dynesty-fit wrapper overhead: 2.695 s/fit
 
 **Definitions:**
 - *Dynesty wrapper overhead* = time inside `search.fit(...)` not spent in `log_likelihood_function`. Covers sampler init, path/run setup, bound construction, weight/posterior post-processing, plot generation.
@@ -34,19 +34,18 @@ Per-Dynesty-fit wrapper overhead: 4.668 s/fit
 
 | Factor | LL calls | Total LL time (s) | Time/call (ms) | Per iteration (s) |
 |---|---:|---:|---:|---:|
-| dataset_0 | 4133 | 0.681 | 0.1647 | 0.227 |
-| dataset_1 | 4461 | 0.744 | 0.1667 | 0.248 |
-| dataset_2 | 4465 | 0.451 | 0.1010 | 0.150 |
-| dataset_3 | 4530 | 0.741 | 0.1636 | 0.247 |
-| dataset_4 | 4315 | 0.733 | 0.1699 | 0.244 |
+| dataset_0 | 0 | 0.000 | 0.0000 | 0.000 |
+| dataset_1 | 0 | 0.000 | 0.0000 | 0.000 |
+| dataset_2 | 0 | 0.000 | 0.0000 | 0.000 |
+| dataset_3 | 2358 | 1.109 | 0.4702 | 0.370 |
+| dataset_4 | 2079 | 0.561 | 0.2697 | 0.187 |
 
 ## Global factor breakdown
 
-- Likelihood calls: 4935
-- Total LL time: 2.744 s
-- Time per call: 0.5560 ms
-- Per iteration: 0.915 s
-- `set_model_approx` calls: 2 (≈ 0.7 per EP iteration), total 0.0022 s
+- Likelihood calls: 0
+- Total LL time: 0.000 s
+- Per iteration: 0.000 s
+- `set_model_approx` calls: 2 (≈ 0.7 per EP iteration), total 0.0996 s
 
 ## Scaling projection
 
@@ -54,12 +53,12 @@ Per-Dynesty-fit wrapper overhead: 4.668 s/fit
 
 | Bucket | Per-fit cost | Scales as |
 |---|---:|---|
-| Dynesty wrapper overhead | 4.668 s/fit | (N + 1) per iteration |
-| Local LL evaluation | 0.3349 s/dataset | N per iteration |
-| Global LL evaluation | 1.372 s | constant per iteration |
-| `set_model_approx` | 0.0011 s | constant per iteration (walks N×3 priors) |
-| EP-loop orchestration | 1.826 s | assumed constant per iteration |
-| Setup + extract | 0.111 s | one-off |
+| Dynesty wrapper overhead | 2.695 s/fit | (N + 1) per iteration |
+| Local LL evaluation | 0.1178 s/dataset | N per iteration |
+| Global LL evaluation | 0.000 s | constant per iteration |
+| `set_model_approx` | 0.0351 s | constant per iteration (walks N×3 priors) |
+| EP-loop orchestration | 6.633 s | assumed constant per iteration |
+| Setup + extract | 0.131 s | one-off |
 
 **Assumptions** (each a verifiable prediction once we re-measure at larger N):
 1. Dynesty wrapper overhead is constant **per fit**. Likely true — paths/sampler init don't depend on `n_datasets`.
@@ -67,16 +66,16 @@ Per-Dynesty-fit wrapper overhead: 4.668 s/fit
 3. Global LL cost is constant in N (`set_model_approx` freezes `hill_coef` to 18 free params).
 4. `set_model_approx` walks N×3 priors per call — should grow linearly. Lumped as constant here because it's <0.01% of total at N=5.
 5. EP-loop orchestration is constant per iteration. **Uncertain** — message updates may grow with `n_datasets`. Verify at N=100.
-6. EP converges in `M = 2.0` iterations at every N. **Most uncertain** — convergence rate depends on data and tolerance; larger samples may need more iterations to satisfy `kl_tol`.
+6. EP converges in `M = 2.8` iterations at every N. **Most uncertain** — convergence rate depends on data and tolerance; larger samples may need more iterations to satisfy `kl_tol`.
 
-**Projection uses M = 2.0 EP iterations** (observed in this run before `kl_tol=1.0` convergence; `max_steps=3` is the cap). Tighten `kl_tol` if you want the projection to assume full max_steps iterations.
+**Projection uses M = 2.8 EP iterations** (observed in this run before `kl_tol=1.0` convergence; `max_steps=3` is the cap). Tighten `kl_tol` if you want the projection to assume full max_steps iterations.
 
 | n_datasets | M | Setup | Dynesty wrapper | Local LL | Global LL | sma | EP orch | **Total** |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 5 | 2 | 0.1 s | 56.0 s | 3.3 s | 2.7 s | 0.0 s | 3.7 s | **1.1 min** |
-| 100 | 2 | 0.1 s | 15.7 min | 1.1 min | 2.7 s | 0.0 s | 3.7 s | **16.9 min** |
-| 1000 | 2 | 0.1 s | 2.6 h | 11.2 min | 2.7 s | 0.0 s | 3.7 s | **2.8 h** |
-| 10000 | 2 | 0.1 s | 1.1 d | 1.9 h | 2.7 s | 0.0 s | 3.7 s | **1.2 d** |
+| 5 | 3 | 0.1 s | 45.8 s | 1.7 s | 0.0 s | 0.1 s | 18.8 s | **1.1 min** |
+| 100 | 3 | 0.1 s | 12.9 min | 33.4 s | 0.0 s | 0.1 s | 18.8 s | **13.7 min** |
+| 1000 | 3 | 0.1 s | 2.1 h | 5.6 min | 0.0 s | 0.1 s | 18.8 s | **2.2 h** |
+| 10000 | 3 | 0.1 s | 21.2 h | 55.7 min | 0.0 s | 0.1 s | 18.8 s | **22.1 h** |
 
 ## Caveats
 
