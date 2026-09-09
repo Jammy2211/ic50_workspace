@@ -21,6 +21,7 @@
 # JAX_ENABLE_X64 is ambient interactively but NOT inherited by sbatch; without it
 # float64 silently degrades to float32.
 export JAX_ENABLE_X64=True
+export PYAUTO_HPC_BASE=${PYAUTO_HPC_BASE:-/mnt/ral/jnightin/PyAuto}
 
 source $PROJECT_PATH/activate.sh
 
