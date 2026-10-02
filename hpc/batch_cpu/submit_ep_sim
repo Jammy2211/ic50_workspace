@@ -5,8 +5,8 @@
 #SBATCH --cpus-per-task=4
 #SBATCH -o output/output.%A.out
 #SBATCH -e error/error.%A.err
-#SBATCH --partition=cpu
-#SBATCH -t 04:00:00
+#SBATCH --partition=ral
+#SBATCH -t 12:00:00
 #SBATCH --mem=8gb
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=james.w.nightingale@durham.ac.uk
@@ -17,6 +17,11 @@
 # Set PROJECT_PATH before submitting:
 #   export PROJECT_PATH=/path/to/your/project
 # -------------------------------
+# JAX_ENABLE_X64 is ambient interactively but NOT inherited by sbatch; without it
+# float64 silently degrades to float32.
+export JAX_ENABLE_X64=True
+export PYAUTO_HPC_BASE=${PYAUTO_HPC_BASE:-/mnt/ral/jnightin/PyAuto}
+
 source $PROJECT_PATH/activate.sh
 
 # Force JAX to use CPU only (no GPU)
@@ -42,7 +47,7 @@ date
 # Fits all 5 sim datasets via expectation propagation. Asserts 3σ recovery
 # of the global coef_mean unless PYAUTO_TEST_MODE is set.
 # -------------------------------
-python3 $PROJECT_PATH/scripts/ep_sim.py
+python3 $PROJECT_PATH/scripts/ep_sim.py --nlive 150 --max_steps 12
 
 echo "Finished ep_sim.py"
 date

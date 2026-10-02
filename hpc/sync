@@ -55,10 +55,10 @@ REMOTE="${HPC_HOST}:${HPC_BASE}/${PROJECT_NAME}"
 # ---------------------------------------------------------------------------
 
 # Code and config — synced normally. Changed files are updated, new files added.
-CODE_DIRS=(config hpc scripts slam_pipeline simulators)
+CODE_DIRS=(config hpc scripts)
 
 # Top-level source files that live at the project root (not in a subdirectory).
-ROOT_FILES=(activate.sh util.py __init__.py README.md LICENSE)
+ROOT_FILES=(activate.sh AGENTS.md CLAUDE.md)
 
 # Raw data — pushed with --ignore-existing.
 # FITS files are written once and never modified, so any file already present
@@ -75,7 +75,7 @@ LOG_DIRS=(
 )
 
 # Pulled from the HPC after jobs finish.
-PULL_DIRS=(output)
+PULL_DIRS=(output results)
 
 # ---------------------------------------------------------------------------
 # rsync options
@@ -97,6 +97,10 @@ EXCLUDES=(
     --exclude='.git/'
     --exclude='*.egg-info/'
     --exclude='sync.conf'          # never push the local HPC config
+    --exclude='raw/'               # raw GDSC2 drop: a symlink into a sibling
+                                   # concr checkout that does not exist on HPC
+    --exclude='rnaseq_all_*.csv'   # 5.3 GB RNAseq matrix; only preprocess needs it
+    --exclude='*_v1/'              # archived pre-rerun results, local only
 )
 
 # ---------------------------------------------------------------------------
@@ -289,9 +293,12 @@ submit() {
     fi
 
     local remote_dir="${HPC_BASE}/${PROJECT_NAME}/hpc/batch_${batch_type}"
+    local project_path="${HPC_BASE}/${PROJECT_NAME}"
     echo "==> [submit] sbatch ${script_name}  (batch_${batch_type})  @  ${HPC_HOST}"
     echo ""
-    ssh "${HPC_HOST}" "cd '${remote_dir}' && sbatch '${script_name}'"
+    # Every submit script does `source $PROJECT_PATH/activate.sh`, but sbatch does
+    # not inherit PROJECT_PATH from the login shell — pass it through explicitly.
+    ssh "${HPC_HOST}" "cd '${remote_dir}' && sbatch --export=ALL,PROJECT_PATH='${project_path}' '${script_name}'"
 }
 
 push_submit() {

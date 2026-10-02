@@ -5,7 +5,7 @@
 #SBATCH --cpus-per-task=4
 #SBATCH -o output/output.%A_%a.out
 #SBATCH -e error/error.%A_%a.err
-#SBATCH --partition=cpu
+#SBATCH --partition=ral
 #SBATCH -t 04:00:00
 #SBATCH --mem=8gb
 #SBATCH --array=0-1
@@ -18,6 +18,11 @@
 # Set PROJECT_PATH before submitting:
 #   export PROJECT_PATH=/path/to/your/project
 # -------------------------------
+# JAX_ENABLE_X64 is ambient interactively but NOT inherited by sbatch; without it
+# float64 silently degrades to float32.
+export JAX_ENABLE_X64=True
+export PYAUTO_HPC_BASE=${PYAUTO_HPC_BASE:-/mnt/ral/jnightin/PyAuto}
+
 source $PROJECT_PATH/activate.sh
 
 # Force JAX to use CPU only (no GPU)

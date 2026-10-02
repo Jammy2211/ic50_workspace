@@ -18,6 +18,11 @@
 # Set PROJECT_PATH before submitting:
 #   export PROJECT_PATH=/path/to/your/project
 # -------------------------------
+# JAX_ENABLE_X64 is ambient interactively but NOT inherited by sbatch; without it
+# float64 silently degrades to float32.
+export JAX_ENABLE_X64=True
+export PYAUTO_HPC_BASE=${PYAUTO_HPC_BASE:-/mnt/ral/jnightin/PyAuto}
+
 source $PROJECT_PATH/activate.sh
 
 echo "=========================================="
@@ -32,7 +37,7 @@ nvidia-smi
 # graph (33 free params). JAX picks the allocated GPU automatically.
 # Asserts 3σ recovery of the global coef_mean unless PYAUTO_TEST_MODE is set.
 # -------------------------------
-python3 $PROJECT_PATH/scripts/graphical_sim.py
+python3 $PROJECT_PATH/scripts/graphical_sim.py --nlive 150
 
 echo "Finished graphical_sim.py"
 date

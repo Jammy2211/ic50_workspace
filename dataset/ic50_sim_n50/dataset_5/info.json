@@ -1,0 +1,7 @@
+{
+    "domain": "cancer",
+    "noise_sigma": 9099.0,
+    "n_latent": 5,
+    "n_doses": 7,
+    "simulated": true
+}

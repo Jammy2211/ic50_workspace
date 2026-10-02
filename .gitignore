@@ -20,3 +20,4 @@ dataset/real/rnaseq_all_*.csv
 
 # AutoFit search output (large; only summaries committed via scripts/results/)
 output/
+output_v1/
